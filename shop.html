@@ -3,204 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <!-- No external CSS for simplicity, all styles are inline -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <title>Shop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-blue': 'hwb(243 6% 42%)', // Color of your header
+                        'accent-yellow': '#ffd700', // Hover color for navigation
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'], // Inter font
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Base styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: hwb(243 6% 42%);
+            color: white;
+            padding: 1em 0;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline; /* Keep navigation items inline */
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color: #ffd700;
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 20px;
+            max-width: 960px;
+            margin: 20px auto;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: hwb(243 6% 42%);
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            font-weight: bold;
+        }
+
+        /* Specific styles for article sections, adapted from aboutme.html's content-section */
+        .article-section {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            gap: 20px; /* Consistent gap */
+            padding: 15px; /* Consistent padding */
+            border-bottom: 1px solid #eee;
+            border-radius: 8px; /* Added for consistency */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hover effects */
+        }
+
+        .article-section:last-of-type {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .article-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .article-section.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .article-section img {
+            width: 40%;
+            max-width: 350px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            object-fit: cover; /* Ensures image covers the container without distortion */
+        }
+
+        .article-section .text-content {
+            flex: 1;
+            font-size: 1.05em;
+            line-height: 1.6;
+        }
+
+        h2.section-title {
+            color: hwb(243 6% 42%);
+            margin-top: 0;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 2em; /* Kept current size as it looks good for a main title */
+        }
+
+        h3.subsection-title { /* Renamed for consistency with aboutme.html */
+            color: hwb(243 6% 42%);
+            margin-top: 0;
+            margin-bottom: 10px; /* Consistent margin */
+            font-size: 1.5em; /* Consistent size */
+            font-weight: bold; /* Consistent font-weight */
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 768px) {
+            /* Kept these responsive rules, but specifically removed the stacking of nav ul li below 480px */
+            .article-section {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+            .article-section.reverse {
+                flex-direction: column;
+            }
+            .article-section img {
+                width: 80%;
+                margin-bottom: 20px; /* Consistent margin */
+            }
+            .article-section .text-content {
+                text-align: center;
+            }
+            header {
+                font-size: 1.1em;
+            }
+            nav ul li a {
+                font-size: 1em;
+                margin: 0 8px;
+            }
+            h2.section-title {
+                font-size: 1.7em;
+            }
+            h3.subsection-title { /* Consistent naming */
+                font-size: 1.4em;
+            }
+            main {
+                padding: 15px;
+                margin: 15px auto;
+            }
+        }
+        /* Removed the @media (max-width: 480px) rule that set nav ul li to display: block;
+            This ensures the navigation stays horizontal on all screen sizes. */
+    </style>
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 </head>
-<style>
-    /* Base styles for the body, ensuring Inter font and background color */
-    body {
-        font-family: 'Inter', sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f4f4f4;
-        color: #333;
-    }
-
-    /* Header styling with background color, text color, padding, centering, and bold font */
-    header {
-        background-color: hwb(243 6% 42%); /* Deep purple */
-        color: white;
-        padding: 1em 0;
-        text-align: center;
-        font-weight: bold; /* Make header text bold */
-        font-size: 1.2em; /* Increased font size for header */
-    }
-
-    /* Navigation list styling, removing default list style */
-    nav ul {
-        list-style: none;
-        padding: 0;
-        margin: 0; /* Remove default margin */
-    }
-
-    /* Individual navigation item styling for inline display and margin */
-    nav ul li {
-        display: inline;
-        margin: 0 15px;
-    }
-
-    /* Navigation link styling, white color, no text decoration, smooth transition, and bold font */
-    nav ul li a {
-        color: white;
-        text-decoration: none;
-        transition: color 0.3s ease;
-        font-weight: bold; /* Make navigation links bold */
-        font-size: 1.1em; /* Increased font size for navigation links */
-        border-radius: 5px; /* Rounded corners for links */
-        padding: 5px 10px; /* Padding for better click area */
-    }
-
-    /* Hover effect for navigation links, changing color and adding underline */
-    nav ul li a:hover {
-        color: #ffd700; /* Change text color to gold on hover */
-        text-decoration: underline; /* Add an underline on hover */
-    }
-
-    /* Main content area styling with padding, max-width, auto margins for centering, background, shadow, and rounded corners */
-    main {
-        padding: 20px;
-        max-width: 960px;
-        margin: 20px auto;
-        background-color: white;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        border-radius: 8px; /* Rounded corners for main content */
-        margin-bottom: 20px;
-    }
-
-    /* Footer styling with centering, padding, background, text color, relative positioning, full width, and bold font */
-    footer {
-        text-align: center;
-        padding: 20px;
-        background-color: hwb(243 6% 42%); /* Deep purple */
-        color: white;
-        position: relative;
-        bottom: 0;
-        width: 100%;
-        font-weight: bold; /* Make footer text bold */
-        font-size: 1em; /* Adjusted font size for footer */
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px;
-    }
-
-    /* Generic article section styling for both tech and finance articles */
-    .article-section {
-        display: flex;
-        align-items: flex-start; /* Align items to the start of the cross axis */
-        margin-bottom: 30px;
-        gap: 30px; /* More space between flex items */
-        padding: 20px; /* Add more padding to sections */
-        border-bottom: 1px solid #eee; /* Separator between sections */
-        border-radius: 8px; /* Rounded corners for article sections */
-        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
-    }
-
-    .article-section:last-of-type {
-        border-bottom: none; /* Remove border for the last section */
-        margin-bottom: 0;
-    }
-
-    .article-section:hover {
-        transform: translateY(-5px); /* Lift effect on hover */
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
-    }
-
-    /* Reverse order for alternating layout */
-    .article-section.reverse {
-        flex-direction: row-reverse;
-    }
-
-    /* Styling for the image container within article sections */
-    .article-section .image-container {
-        flex-shrink: 0; /* Prevent image from shrinking */
-        width: 40%; /* Image takes 40% width in desktop view */
-        max-width: 350px; /* Maximum width for images */
-        height: auto; /* Maintain aspect ratio */
-        border-radius: 8px; /* Rounded corners for images */
-        overflow: hidden; /* Ensures rounded corners apply to content */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for images */
-    }
-
-    /* Article image styling */
-    .article-section .image-container img {
-        width: 100%;
-        height: auto;
-        display: block; /* Remove extra space below image */
-        object-fit: cover; /* Ensure image covers the container */
-    }
-
-    /* Text content styling within article sections */
-    .article-section .text-content {
-        flex: 1; /* Text content takes remaining space */
-        font-size: 1.05em; /* Slightly larger text for readability */
-        line-height: 1.6; /* Improved line spacing */
-    }
-
-    /* Section title styling matching header color and bold font */
-    h2.section-title {
-        color: hwb(243 6% 42%); /* Match header color */
-        margin-top: 0;
-        margin-bottom: 25px; /* More space below main title */
-        text-align: center;
-        font-weight: bold; /* Make h2 titles bold */
-        font-size: 2em; /* Significantly increased font size for h2 titles */
-    }
-
-    h3 {
-        color: hwb(243 6% 42%); /* Match header color for article titles */
-        font-size: 1.6em; /* Appropriate size for article titles */
-        margin-top: 0;
-        margin-bottom: 15px;
-    }
-
-    /* Responsive adjustments for smaller screens */
-    @media (max-width: 768px) {
-        .article-section {
-            flex-direction: column; /* Stack items vertically on smaller screens */
-            align-items: center; /* Center align items when stacked */
-            gap: 20px; /* Adjust gap for smaller screens */
-        }
-        .article-section.reverse {
-            flex-direction: column; /* Also stack vertically when reversed */
-        }
-        .article-section .image-container {
-            width: 90%; /* Images take more width on smaller screens */
-            margin-bottom: 10px; /* Space between image and text when stacked */
-        }
-        .article-section .text-content {
-            text-align: center; /* Center text on mobile for better flow */
-        }
-        header {
-            font-size: 1.1em; /* Slightly smaller header on mobile */
-        }
-        nav ul li a {
-            font-size: 1em; /* Slightly smaller nav links on mobile */
-            margin: 0 8px; /* Reduce margin for nav links */
-        }
-        h2.section-title {
-            font-size: 1.7em; /* Slightly smaller h2 titles on mobile */
-        }
-        h3 {
-            font-size: 1.4em; /* Adjust article titles for mobile */
-        }
-        main {
-            padding: 15px; /* Reduce main padding on mobile */
-            margin: 15px auto; /* Adjust main margin on mobile */
-        }
-    }
-
-    @media (max-width: 480px) {
-        nav ul li {
-            display: block; /* Stack nav items on very small screens */
-            margin: 10px 0; /* Add vertical margin */
-        }
-        nav ul {
-            padding: 10px 0; /* Add padding to nav ul */
-        }
-    }
-</style>
 <body>
+
     <header>
         <nav>
             <ul>
@@ -217,11 +199,12 @@
 
     <main>
         <h2 class="section-title">Available soon...</h2>
-        <p style="text-align: center; margin-bottom: 40px; font-size: 1.1em;">The shop will be available soon!.</p>
+        <p style="text-align: center; margin-bottom: 40px; font-size: 1.1em;">The shop will be available soon.</p>
     </main>
 
     <footer>
         <p>&copy; 2025 LemonPower21. All rights reserved.</p>
     </footer>
+
 </body>
 </html>
