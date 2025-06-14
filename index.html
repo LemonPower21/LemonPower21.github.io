@@ -46,7 +46,7 @@
         }
 
         nav ul li {
-            display: inline;
+            display: inline; /* Keep navigation items inline */
             margin: 0 15px;
         }
 
@@ -143,6 +143,7 @@
 
         /* Responsive adjustments for smaller screens */
         @media (max-width: 768px) {
+            /* Kept these responsive rules, but specifically removed the stacking of nav ul li below 480px */
             .article-section {
                 flex-direction: column;
                 align-items: center;
@@ -176,16 +177,8 @@
                 margin: 15px auto;
             }
         }
-
-        @media (max-width: 480px) {
-            nav ul li {
-                display: block;
-                margin: 10px 0;
-            }
-            nav ul {
-                padding: 10px 0;
-            }
-        }
+        /* Removed the @media (max-width: 480px) rule that set nav ul li to display: block;
+           This ensures the navigation stays horizontal on all screen sizes. */
     </style>
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 </head>
