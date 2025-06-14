@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <title>Home - LemonPower21</title>
+    <!-- No external CSS for simplicity, all styles are inline -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="https://placehold.co/32x32/000/FFF?text=LP">
 </head>
 <style>
     /* Base styles for the body, ensuring Inter font and background color */
@@ -19,7 +20,7 @@
 
     /* Header styling with background color, text color, padding, centering, and bold font */
     header {
-        background-color: hwb(243 6% 42%);
+        background-color: hwb(243 6% 42%); /* Deep purple */
         color: white;
         padding: 1em 0;
         text-align: center;
@@ -31,6 +32,7 @@
     nav ul {
         list-style: none;
         padding: 0;
+        margin: 0; /* Remove default margin */
     }
 
     /* Individual navigation item styling for inline display and margin */
@@ -46,6 +48,8 @@
         transition: color 0.3s ease;
         font-weight: bold; /* Make navigation links bold */
         font-size: 1.1em; /* Increased font size for navigation links */
+        border-radius: 5px; /* Rounded corners for links */
+        padding: 5px 10px; /* Padding for better click area */
     }
 
     /* Hover effect for navigation links, changing color and adding underline */
@@ -69,140 +73,68 @@
     footer {
         text-align: center;
         padding: 20px;
-        background-color: hwb(243 6% 42%);
+        background-color: hwb(243 6% 42%); /* Deep purple */
         color: white;
         position: relative;
         bottom: 0;
         width: 100%;
         font-weight: bold; /* Make footer text bold */
         font-size: 1em; /* Adjusted font size for footer */
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
     }
 
-    /* Specific styles for YouTube sections, using flexbox for layout */
-    .youtube-section {
+    /* Generic article section styling for both tech and finance articles */
+    .article-section {
         display: flex;
         align-items: flex-start; /* Align items to the start of the cross axis */
         margin-bottom: 30px;
-        gap: 20px; /* Space between flex items */
-        padding: 15px; /* Add some padding to sections */
+        gap: 30px; /* More space between flex items */
+        padding: 20px; /* Add more padding to sections */
         border-bottom: 1px solid #eee; /* Separator between sections */
+        border-radius: 8px; /* Rounded corners for article sections */
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
     }
 
-    /* Remove border for the last section */
-    .youtube-section:last-of-type {
-        border-bottom: none;
+    .article-section:last-of-type {
+        border-bottom: none; /* Remove border for the last section */
         margin-bottom: 0;
     }
 
+    .article-section:hover {
+        transform: translateY(-5px); /* Lift effect on hover */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
+    }
+
     /* Reverse order for alternating layout */
-    .youtube-section.reverse {
+    .article-section.reverse {
         flex-direction: row-reverse;
     }
 
-    /* Styling for the thumbnail container within YouTube sections */
-    .youtube-section .thumbnail-container {
+    /* Styling for the image container within article sections */
+    .article-section .image-container {
+        flex-shrink: 0; /* Prevent image from shrinking */
         width: 40%; /* Image takes 40% width in desktop view */
         max-width: 350px; /* Maximum width for images */
         height: auto; /* Maintain aspect ratio */
-        position: relative; /* For overlay text/button */
         border-radius: 8px; /* Rounded corners for images */
         overflow: hidden; /* Ensures rounded corners apply to content */
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for images */
     }
 
-    /* Thumbnail image styling */
-    .youtube-section .thumbnail-container img {
+    /* Article image styling */
+    .article-section .image-container img {
         width: 100%;
         height: auto;
         display: block; /* Remove extra space below image */
+        object-fit: cover; /* Ensure image covers the container */
     }
 
-    /* Overlay text for thumbnails */
-    .youtube-section .thumbnail-overlay {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black */
-        color: white;
-        padding: 10px;
-        box-sizing: border-box; /* Include padding in width */
-        font-size: 0.9em;
-        text-align: center;
-    }
-
-    /* Link styling within thumbnail overlay */
-    .youtube-section .thumbnail-overlay a {
-        color: #ffd700;
-        text-decoration: none;
-        font-weight: bold;
-        display: block; /* Make the link a block to fill space */
-        margin-top: 5px;
-    }
-
-    /* Hover effect for links within thumbnail overlay */
-    .youtube-section .thumbnail-overlay a:hover {
-        text-decoration: underline;
-    }
-
-    /* Text content styling within YouTube sections */
-    .youtube-section .text-content {
+    /* Text content styling within article sections */
+    .article-section .text-content {
         flex: 1; /* Text content takes remaining space */
         font-size: 1.05em; /* Slightly larger text for readability */
         line-height: 1.6; /* Improved line spacing */
-    }
-
-    /* Specific styles for the content sections */
-    .school-section {
-        display: flex;
-        align-items: flex-start; /* Align items to the start of the cross axis */
-        margin-bottom: 30px;
-        gap: 20px; /* Space between flex items */
-        padding: 15px; /* Add some padding to sections */
-        border-bottom: 1px solid #eee; /* Separator between sections */
-    }
-
-    /* Remove border for the last section */
-    .school-section:last-of-type {
-        border-bottom: none;
-        margin-bottom: 0;
-    }
-
-    /* Reverse order for alternating layout */
-    .school-section.reverse {
-        flex-direction: row-reverse; /* Reverse order for alternating layout */
-    }
-
-    /* Image styling within school sections */
-    .school-section img {
-        width: 40%; /* Image takes 40% width in desktop view */
-        max-width: 350px; /* Maximum width for images */
-        height: auto; /* Maintain aspect ratio */
-        border-radius: 8px; /* Rounded corners for images */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for images */
-    }
-
-    /* Text content styling within school sections */
-    .school-section .text-content {
-        flex: 1; /* Text content takes remaining space */
-        font-size: 1.05em; /* Slightly larger text for readability */
-        line-height: 1.6; /* Improved line spacing */
-    }
-
-    /* Styling for the "Coming Soon" section */
-    .coming-soon-section {
-        text-align: center; /* Center align content in this section */
-        margin-top: 40px; /* Space above this section */
-    }
-
-    /* Image styling within the "Coming Soon" section */
-    .coming-soon-section img {
-        width: 100%; /* Image takes full width of its container */
-        max-width: 800px; /* Maximum width for the large image */
-        height: auto; /* Maintain aspect ratio */
-        border-radius: 8px; /* Rounded corners */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-        margin-top: 20px; /* Space above the image */
     }
 
     /* Section title styling matching header color and bold font */
@@ -215,56 +147,28 @@
         font-size: 2em; /* Significantly increased font size for h2 titles */
     }
 
-    /* New styles for contacts section */
-    .contacts-container {
-        text-align: center; /* Center the content inside this container */
-    }
-
-    .social-logos {
-        display: flex;
-        justify-content: center; /* Center the logos horizontally */
-        flex-wrap: wrap; /* Allow logos to wrap on smaller screens */
-        gap: 30px; /* Space between logos */
-        margin-top: 30px; /* Space below the title */
-        margin-bottom: 30px; /* Space above footer if main content is short */
-    }
-
-    .social-logos a {
-        display: block; /* Make the entire link clickable */
-        width: 60px; /* Fixed width for the logo */
-        height: 60px; /* Fixed height for the logo */
-        border-radius: 50%; /* Make logos round */
-        overflow: hidden; /* Ensure image fits round container */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Subtle shadow */
-        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
-    }
-
-    .social-logos a:hover {
-        transform: translateY(-5px); /* Lift effect on hover */
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25); /* More pronounced shadow */
-    }
-
-    .social-logos img {
-        width: 100%; /* Image fills the container */
-        height: 100%; /* Image fills the container */
-        object-fit: cover; /* Cover the container without distortion */
-        display: block; /* Remove extra space below image */
+    h3 {
+        color: hwb(243 6% 42%); /* Match header color for article titles */
+        font-size: 1.6em; /* Appropriate size for article titles */
+        margin-top: 0;
+        margin-bottom: 15px;
     }
 
     /* Responsive adjustments for smaller screens */
     @media (max-width: 768px) {
-        .youtube-section {
+        .article-section {
             flex-direction: column; /* Stack items vertically on smaller screens */
             align-items: center; /* Center align items when stacked */
+            gap: 20px; /* Adjust gap for smaller screens */
         }
-        .youtube-section.reverse {
+        .article-section.reverse {
             flex-direction: column; /* Also stack vertically when reversed */
         }
-        .youtube-section .thumbnail-container {
-            width: 80%; /* Images take more width on smaller screens */
-            margin-bottom: 20px; /* Space between image and text when stacked */
+        .article-section .image-container {
+            width: 90%; /* Images take more width on smaller screens */
+            margin-bottom: 10px; /* Space between image and text when stacked */
         }
-        .youtube-section .text-content {
+        .article-section .text-content {
             text-align: center; /* Center text on mobile for better flow */
         }
         header {
@@ -272,30 +176,27 @@
         }
         nav ul li a {
             font-size: 1em; /* Slightly smaller nav links on mobile */
+            margin: 0 8px; /* Reduce margin for nav links */
         }
         h2.section-title {
             font-size: 1.7em; /* Slightly smaller h2 titles on mobile */
         }
-        .school-section {
-            flex-direction: column; /* Stack items vertically on smaller screens */
-            align-items: center; /* Center align items when stacked */
+        h3 {
+            font-size: 1.4em; /* Adjust article titles for mobile */
         }
-        .school-section.reverse {
-            flex-direction: column; /* Also stack vertically when reversed */
+        main {
+            padding: 15px; /* Reduce main padding on mobile */
+            margin: 15px auto; /* Adjust main margin on mobile */
         }
-        .school-section img {
-            width: 80%; /* Images take more width on smaller screens */
-            margin-bottom: 20px; /* Space between image and text when stacked */
+    }
+
+    @media (max-width: 480px) {
+        nav ul li {
+            display: block; /* Stack nav items on very small screens */
+            margin: 10px 0; /* Add vertical margin */
         }
-        .school-section .text-content {
-            text-align: center; /* Center text on mobile for better flow */
-        }
-        .social-logos {
-            gap: 20px; /* Adjust gap for smaller screens */
-        }
-        .social-logos a {
-            width: 50px;
-            height: 50px;
+        nav ul {
+            padding: 10px 0; /* Add padding to nav ul */
         }
     }
 </style>
@@ -315,9 +216,31 @@
     </header>
 
     <main>
-        <h1>Benvenutos sulla Mia Pagina Web!</h1>
-        <p>Qui puoi trovare informazioni su di me, la mia carriera, i miei video YouTube e molto altro.</p>
-        </main>
+        <h2 class="section-title">Welcome to My Webpage!</h2>
+        <p style="text-align: center; margin-bottom: 40px; font-size: 1.1em;">Here you can find information about me, my career, my YouTube videos, and discover new content in the tech and financial fields.</p>
+
+        <!-- Tech Article Section -->
+        <div class="article-section">
+            <div class="image-container">
+                <img src="https://placehold.co/400x250/A7A1E1/FFFFFF?text=AI+Tech" alt="AI Technology">
+            </div>
+            <div class="text-content">
+                <h3>The Revolutionary Impact of Artificial Intelligence on Daily Life</h3>
+                <p>Artificial intelligence (AI) is rapidly transforming our world, integrating into every aspect of daily life. From our smartphones to smart homes, from healthcare to autonomous vehicles, AI is redefining how we interact with technology and with each other. This revolution not only improves efficiency and convenience but also opens new frontiers in areas like personalized medicine and energy management. The future promises even more sophisticated AI, capable of learning and adapting in increasingly complex ways, making it an indispensable tool for addressing the challenges of the 21st century.</p>
+            </div>
+        </div>
+
+        <!-- Financial Article Section (reversed layout) -->
+        <div class="article-section reverse">
+            <div class="image-container">
+                <img src="https://placehold.co/400x250/8CD5AF/FFFFFF?text=Finance" alt="Finance and Investments">
+            </div>
+            <div class="text-content">
+                <h3>Essential Investment Strategies for Beginners</h3>
+                <p>Navigating the world of investments can seem daunting at first, but understanding some fundamental strategies is the first step toward building a solid financial future. For beginners, it's crucial to start with a clear understanding of their financial goals and risk tolerance. Diversification is a key tactic, which involves spreading investments across different asset classes such as stocks, bonds, and mutual funds, to minimize risks. Long-term investing and understanding the concept of compound interest can make a significant difference over time. Starting with small amounts and gradually increasing your portfolio, perhaps with the help of a financial advisor, can make the investment journey more manageable and successful.</p>
+            </div>
+        </div>
+    </main>
 
     <footer>
         <p>&copy; 2025 LemonPower21. All rights reserved.</p>
