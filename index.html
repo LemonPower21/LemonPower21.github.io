@@ -43,15 +43,11 @@
             list-style: none;
             padding: 0;
             margin: 0;
-            display: flex; /* Make the navigation a flex container */
-            justify-content: center; /* Center the items horizontally */
-            flex-wrap: nowrap; /* Prevent wrapping of navigation items */
         }
 
         nav ul li {
-            /* display: inline; Removed as flex item handles this */
+            display: inline; /* Keep navigation items inline */
             margin: 0 15px;
-            white-space: nowrap; /* Ensure text inside li does not wrap */
         }
 
         nav ul li a {
@@ -147,6 +143,7 @@
 
         /* Responsive adjustments for smaller screens */
         @media (max-width: 768px) {
+            /* Kept these responsive rules, but specifically removed the stacking of nav ul li below 480px */
             .article-section {
                 flex-direction: column;
                 align-items: center;
@@ -165,10 +162,9 @@
             header {
                 font-size: 1.1em;
             }
-            /* Adjusted nav link font size and margin to try and keep it on one line on smaller screens */
             nav ul li a {
-                font-size: 0.9em; /* Slightly smaller font to help fit */
-                margin: 0 5px; /* Reduced margin */
+                font-size: 1em;
+                margin: 0 8px;
             }
             h2.section-title {
                 font-size: 1.7em;
@@ -181,7 +177,6 @@
                 margin: 15px auto;
             }
         }
-
         /* Removed the @media (max-width: 480px) rule that set nav ul li to display: block;
            This ensures the navigation stays horizontal on all screen sizes. */
     </style>
@@ -192,10 +187,10 @@
     <header>
         <nav>
             <ul>
-                <li><a href="aboutme.html">About Me</a></li> <!-- Moved to first position -->
                 <li><a href="index.html">Home</a></li>
                 <li><a href="career.html">Career</a></li>
                 <li><a href="youtube.html">YouTube</a></li>
+                <li><a href="aboutme.html">About Me</a></li>
                 <li><a href="contacts.html">Contacts</a></li>
                 <li><a href="affiliation.html">Affiliation</a></li>
                 <li><a href="shop.html">Shop</a></li>
