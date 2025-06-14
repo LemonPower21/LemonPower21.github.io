@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube</title>
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+<style>
+    /* Base styles for the body, ensuring Inter font and background color */
+    body {
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+    }
+
+    /* Header styling with background color, text color, padding, centering, and bold font */
+    header {
+        background-color: hwb(243 6% 42%);
+        color: white;
+        padding: 1em 0;
+        text-align: center;
+        font-weight: bold; /* Make header text bold */
+        font-size: 1.2em; /* Increased font size for header */
+    }
+
+    /* Navigation list styling, removing default list style */
+    nav ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    /* Individual navigation item styling for inline display and margin */
+    nav ul li {
+        display: inline;
+        margin: 0 15px;
+    }
+
+    /* Navigation link styling, white color, no text decoration, smooth transition, and bold font */
+    nav ul li a {
+        color: white;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        font-weight: bold; /* Make navigation links bold */
+        font-size: 1.1em; /* Increased font size for navigation links */
+    }
+
+    /* Hover effect for navigation links, changing color and adding underline */
+    nav ul li a:hover {
+        color: #ffd700; /* Change text color to gold on hover */
+        text-decoration: underline; /* Add an underline on hover */
+    }
+
+    /* Main content area styling with padding, max-width, auto margins for centering, background, shadow, and rounded corners */
+    main {
+        padding: 20px;
+        max-width: 960px;
+        margin: 20px auto;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px; /* Rounded corners for main content */
+        margin-bottom: 20px;
+    }
+
+    /* Footer styling with centering, padding, background, text color, relative positioning, full width, and bold font */
+    footer {
+        text-align: center;
+        padding: 20px;
+        background-color: hwb(243 6% 42%);
+        color: white;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+        font-weight: bold; /* Make footer text bold */
+        font-size: 1em; /* Adjusted font size for footer */
+    }
+
+    /* Specific styles for YouTube sections, using flexbox for layout */
+    .youtube-section {
+        display: flex;
+        align-items: flex-start; /* Align items to the start of the cross axis */
+        margin-bottom: 30px;
+        gap: 20px; /* Space between flex items */
+        padding: 15px; /* Add some padding to sections */
+        border-bottom: 1px solid #eee; /* Separator between sections */
+    }
+
+    /* Remove border for the last section */
+    .youtube-section:last-of-type {
+        border-bottom: none;
+        margin-bottom: 0;
+    }
+
+    /* Reverse order for alternating layout */
+    .youtube-section.reverse {
+        flex-direction: row-reverse;
+    }
+
+    /* Styling for the thumbnail container within YouTube sections */
+    .youtube-section .thumbnail-container {
+        width: 40%; /* Image takes 40% width in desktop view */
+        max-width: 350px; /* Maximum width for images */
+        height: auto; /* Maintain aspect ratio */
+        position: relative; /* For overlay text/button */
+        border-radius: 8px; /* Rounded corners for images */
+        overflow: hidden; /* Ensures rounded corners apply to content */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for images */
+    }
+
+    /* Thumbnail image styling */
+    .youtube-section .thumbnail-container img {
+        width: 100%;
+        height: auto;
+        display: block; /* Remove extra space below image */
+    }
+
+    /* Overlay text for thumbnails */
+    .youtube-section .thumbnail-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black */
+        color: white;
+        padding: 10px;
+        box-sizing: border-box; /* Include padding in width */
+        font-size: 0.9em;
+        text-align: center;
+    }
+
+    /* Link styling within thumbnail overlay */
+    .youtube-section .thumbnail-overlay a {
+        color: #ffd700;
+        text-decoration: none;
+        font-weight: bold;
+        display: block; /* Make the link a block to fill space */
+        margin-top: 5px;
+    }
+
+    /* Hover effect for links within thumbnail overlay */
+    .youtube-section .thumbnail-overlay a:hover {
+        text-decoration: underline;
+    }
+
+    /* Text content styling within YouTube sections */
+    .youtube-section .text-content {
+        flex: 1; /* Text content takes remaining space */
+        font-size: 1.05em; /* Slightly larger text for readability */
+        line-height: 1.6; /* Improved line spacing */
+    }
+
+    /* Specific styles for the content sections */
+    .school-section {
+        display: flex;
+        align-items: flex-start; /* Align items to the start of the cross axis */
+        margin-bottom: 30px;
+        gap: 20px; /* Space between flex items */
+        padding: 15px; /* Add some padding to sections */
+        border-bottom: 1px solid #eee; /* Separator between sections */
+    }
+
+    /* Remove border for the last section */
+    .school-section:last-of-type {
+        border-bottom: none;
+        margin-bottom: 0;
+    }
+
+    /* Reverse order for alternating layout */
+    .school-section.reverse {
+        flex-direction: row-reverse; /* Reverse order for alternating layout */
+    }
+
+    /* Image styling within school sections */
+    .school-section img {
+        width: 40%; /* Image takes 40% width in desktop view */
+        max-width: 350px; /* Maximum width for images */
+        height: auto; /* Maintain aspect ratio */
+        border-radius: 8px; /* Rounded corners for images */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for images */
+    }
+
+    /* Text content styling within school sections */
+    .school-section .text-content {
+        flex: 1; /* Text content takes remaining space */
+        font-size: 1.05em; /* Slightly larger text for readability */
+        line-height: 1.6; /* Improved line spacing */
+    }
+
+    /* Styling for the "Coming Soon" section */
+    .coming-soon-section {
+        text-align: center; /* Center align content in this section */
+        margin-top: 40px; /* Space above this section */
+    }
+
+    /* Image styling within the "Coming Soon" section */
+    .coming-soon-section img {
+        width: 100%; /* Image takes full width of its container */
+        max-width: 800px; /* Maximum width for the large image */
+        height: auto; /* Maintain aspect ratio */
+        border-radius: 8px; /* Rounded corners */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        margin-top: 20px; /* Space above the image */
+    }
+
+    /* Section title styling matching header color and bold font */
+    h2.section-title {
+        color: hwb(243 6% 42%); /* Match header color */
+        margin-top: 0;
+        margin-bottom: 25px; /* More space below main title */
+        text-align: center;
+        font-weight: bold; /* Make h2 titles bold */
+        font-size: 2em; /* Significantly increased font size for h2 titles */
+    }
+
+    /* New styles for contacts section */
+    .contacts-container {
+        text-align: center; /* Center the content inside this container */
+    }
+
+    .social-logos {
+        display: flex;
+        justify-content: center; /* Center the logos horizontally */
+        flex-wrap: wrap; /* Allow logos to wrap on smaller screens */
+        gap: 30px; /* Space between logos */
+        margin-top: 30px; /* Space below the title */
+        margin-bottom: 30px; /* Space above footer if main content is short */
+    }
+
+    .social-logos a {
+        display: block; /* Make the entire link clickable */
+        width: 60px; /* Fixed width for the logo */
+        height: 60px; /* Fixed height for the logo */
+        border-radius: 50%; /* Make logos round */
+        overflow: hidden; /* Ensure image fits round container */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Subtle shadow */
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
+    }
+
+    .social-logos a:hover {
+        transform: translateY(-5px); /* Lift effect on hover */
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25); /* More pronounced shadow */
+    }
+
+    .social-logos img {
+        width: 100%; /* Image fills the container */
+        height: 100%; /* Image fills the container */
+        object-fit: cover; /* Cover the container without distortion */
+        display: block; /* Remove extra space below image */
+    }
+
+    /* Responsive adjustments for smaller screens */
+    @media (max-width: 768px) {
+        .youtube-section {
+            flex-direction: column; /* Stack items vertically on smaller screens */
+            align-items: center; /* Center align items when stacked */
+        }
+        .youtube-section.reverse {
+            flex-direction: column; /* Also stack vertically when reversed */
+        }
+        .youtube-section .thumbnail-container {
+            width: 80%; /* Images take more width on smaller screens */
+            margin-bottom: 20px; /* Space between image and text when stacked */
+        }
+        .youtube-section .text-content {
+            text-align: center; /* Center text on mobile for better flow */
+        }
+        header {
+            font-size: 1.1em; /* Slightly smaller header on mobile */
+        }
+        nav ul li a {
+            font-size: 1em; /* Slightly smaller nav links on mobile */
+        }
+        h2.section-title {
+            font-size: 1.7em; /* Slightly smaller h2 titles on mobile */
+        }
+        .school-section {
+            flex-direction: column; /* Stack items vertically on smaller screens */
+            align-items: center; /* Center align items when stacked */
+        }
+        .school-section.reverse {
+            flex-direction: column; /* Also stack vertically when reversed */
+        }
+        .school-section img {
+            width: 80%; /* Images take more width on smaller screens */
+            margin-bottom: 20px; /* Space between image and text when stacked */
+        }
+        .school-section .text-content {
+            text-align: center; /* Center text on mobile for better flow */
+        }
+        .social-logos {
+            gap: 20px; /* Adjust gap for smaller screens */
+        }
+        .social-logos a {
+            width: 50px;
+            height: 50px;
+        }
+    }
+</style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="career.html">Career</a></li>
+                <li><a href="youtube.html">YouTube</a></li>
+                <li><a href="aboutme.html">About Me</a></li>
+                <li><a href="contacts.html">Contacts</a></li>
+                <li><a href="affiliation.html">Affiliation</a></li>
+                <li><a href="shop.html">Shop</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="experience">
+            <h2 class="section-title">My experience on YouTube...</h2>
+            <div class="youtube-section">
+                <div class="thumbnail-container">
+                    <!-- Placeholder image for "Come trasferire file" thumbnail -->
+                    <a href="https://www.youtube.com/watch?v=JUNNvkdpPMY&t=7s" target="_blank"><img src="images/5.jpg" alt="Video Thumbnail: How to transfer files from PC to phone"></a>
+                    <div class="thumbnail-overlay">
+                        COME TRASFERIRE FILE DA PC A TELEFONO
+                        <a href="https://www.youtube.com/watch?v=JUNNvkdpPMY&t=7s" target="_blank">Guarda su YouTube</a>
+                    </div>
+                </div>
+                <div class="text-content">
+                    <p>Since I was 11, I've tried to launch several YouTube channels, but each attempt ended in failure. The main reason was that I consistently created content I didn't genuinely enjoy, ranging from gaming videos to short automation clips. I've learned that you can't truly succeed doing something you dislike. This realization led me to a new path: I'm starting an Italian YouTube channel focused on helping people with technology, but in my own unique style. I know I have a lot to learn when it comes to video editing, and I understand that improvement comes with experience.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="why-post">
+            <h2 class="section-title">Why I decided to post anyway?</h2>
+            <div class="youtube-section reverse">
+                <div class="thumbnail-container">
+                    <!-- Placeholder image for "Come fare foto a 360" thumbnail -->
+                      <a href="https://www.youtube.com/watch?v=yTgtEjl2F8s" target="_blank"><img src="images/6.jpg" alt="Video Thumbnail: How to take 360-degree photos"></a>
+                    <div class="thumbnail-overlay">
+                        COME FARE FOTO A 360 GRADI
+                        <a href="https://www.youtube.com/watch?v=yTgtEjl2F8s" target="_blank">Guarda su YouTube</a>
+                    </div>
+                </div>
+                <div class="text-content">
+                    <p>I've decided to keep posting content on my current channel, no matter what the views or YouTube metrics look like. One day, I'd love to tell my children or grandchildren that their grandfather was involved in Industry 4.0, not just as an employee (an engineer), but also as a kind of entrepreneur (a content creator).</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 LemonPower21. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <!-- Tailwind CSS CDN for modern styling and responsiveness (used minimally for utility classes) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-blue': 'hwb(243 6% 42%)', // Color of your header
+                        'accent-yellow': '#ffd700', // Hover color for navigation
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'], // Inter font
+                    }
+                }
+            }
+        }
+    </script>
+  <style>
+        /* Base styles (reused from previous document) */
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: hwb(243 6% 42%);
+            color: white;
+            padding: 1em 0;
+            text-align: center;
+            font-weight: bold; /* Make header text bold */
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: bold; /* Make navigation links bold */
+        }
+
+        nav ul li a:hover {
+            color: #ffd700;
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 20px;
+            max-width: 960px;
+            margin: 20px auto;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px; /* Rounded corners for main content */
+            margin-bottom: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: hwb(243 6% 42%);
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            font-weight: bold; /* Make footer text bold */
+        }
+
+        /* Specific styles for the content sections (adapted from career.html structure) */
+        .content-section {
+            display: flex;
+            align-items: flex-start; /* Align items to the start of the cross axis */
+            margin-bottom: 30px;
+            gap: 20px; /* Space between flex items */
+            padding: 15px; /* Add some padding to sections */
+            border-bottom: 1px solid #eee; /* Separator between sections */
+        }
+
+        .content-section:last-of-type {
+            border-bottom: none; /* No separator for the last section */
+            margin-bottom: 0;
+        }
+
+        .content-section.reverse {
+            flex-direction: row-reverse; /* Reverse order for alternating layout */
+        }
+
+        .content-section img {
+            width: 40%; /* Image takes 40% width in desktop view */
+            max-width: 350px; /* Maximum width for images */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 8px; /* Rounded corners for images */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for images */
+        }
+
+        .content-section .text-content {
+            flex: 1; /* Text content takes remaining space */
+            font-size: 1.05em; /* Slightly larger text for readability */
+            line-height: 1.6; /* Improved line spacing */
+        }
+
+        h2.section-title {
+            color: hwb(243 6% 42%); /* Match header color */
+            margin-top: 0;
+            margin-bottom: 25px; /* More space below main title */
+            text-align: center;
+            font-weight: bold; /* Make h2 titles bold */
+        }
+
+        h3.subsection-title {
+            color: hwb(243 6% 42%);
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+            font-weight: bold; /* Make h3 subsection titles bold */
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 768px) {
+            .content-section {
+                flex-direction: column; /* Stack items vertically on smaller screens */
+                align-items: center; /* Center align items when stacked */
+            }
+            .content-section.reverse {
+                flex-direction: column; /* Also stack vertically when reversed */
+            }
+            .content-section img {
+                width: 80%; /* Images take more width on smaller screens */
+                margin-bottom: 20px; /* Space between image and text when stacked */
+            }
+            .content-section .text-content {
+                text-align: center; /* Center text on mobile for better flow */
+            }
+        }
+    </style>
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="career.html">Career</a></li>
+                <li><a href="youtube.html">YouTube</a></li>
+                <li><a href="aboutme.html">About Me</a></li>
+                <li><a href="contacts.html">Contacts</a></li>
+                <li><a href="affiliation.html">Affiliation</a></li>
+                <li><a href="shop.html">Shop</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="about-me-intro">
+            <div class="content-section">
+                <img src="images/7.jpg" alt="Profile Picture" onerror="this.onerror=null;this.src='https://placehold.co/350x200/cccccc/000000?text=Profile+Image';">
+                <div class="text-content">
+                    <h3 class="subsection-title">My Passion for Technology</h3>
+                    <p>Hello everyone! I'm Francesco Vito Giotta, a young man hailing from the province of Bari in Puglia, Italy. My passion for technology and computers has been with me since I was little, and my approach to it has always been pretty unique. I remember spending hours watching cartoons on YouTube, and by seven, I was already deep into video games. I even found a bug in "Pocket Ninja," a flash game, and exploited it to beat every level. At nine, smartphone games hooked me, and I immediately started scouring the internet for APKs with "unlimited money" or "unlocked levels" because I wasn't keen on rooting my phone. </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="digital-exploration">
+            <div class="content-section reverse">
+                <img src="images/6.png" alt="Kali Linux Logo" onerror="this.onerror=null;this.src='https://placehold.co/350x200/cccccc/000000?text=Kali+Linux';">
+                <div class="text-content">
+                    <h3 class="subsection-title">A little hacker is born...</h3>
+                    <p>My fascination with computers, particularly those running Windows, began early: around age of 11. I quickly embraced my inner geek, often installing and reinstalling Windows 7 from a USB stick. The thrill came from hunting down product keys online and bypassing the activation process, a challenge I also tackled with Microsoft Office.
+Those years also sparked my love for video games. I vividly remember discovering titles like Serious Sam, thanks to the YouTuber "Zeb89," and downloading them via torrent from The Pirate Bay. This era also introduced me to the world of Bitcoin. I dove deep into studying mining farms and even attempted to mine with an old PC... fond memories of a time when the digital frontier felt boundless.
+Then when I was thirteen, I stumbled upon Kali Linux and Linux Distros in general, which really ignited my interest in writing Python scripts for what I'd call "micro-hacking."</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="new-ventures">
+            <div class="content-section">
+                <img src="images/7.png" alt="Trading and YouTube Graphics" onerror="this.onerror=null;this.src='https://placehold.co/350x200/cccccc/000000?text=Ventures';">
+                <div class="text-content">
+                    <h3 class="subsection-title">Kali Linux: The Leap</h3>
+                                    <p><b>Data Retrieval via Link:</b> I successfully found someone's data by sending a link to their smartphone, which let me grab their user-agent, snap photos with the front camera, and even listen in using their microphone.
+<br><b>Dark Web Exploration:</b> I dove headfirst into the dark web, exploring all its nooks and crannies... I even visited the "Vice Society" website, where I found a ton of illegally obtained data.
+<br><b>UFONet Botnet Utilization:</b> Another milestone was using UFONet, the only public botnet for DDoS attacks.
+<br><b>OSINT Investigations:</b> I've also been able to find personal data through OSINT (Open-Source Intelligence).
+<br><b>Multinational .env File Discovery:</b> Lastly, I've successfully located .env files from various multinational corporations online using GHDB (Google Hacking Database).</p>
+          </div>
+            </div>
+        </section>
+
+        <section id="digital-exploration">
+            <div class="content-section reverse">
+                <img src="images/8.png" alt="Kali Linux Logo" onerror="this.onerror=null;this.src='https://placehold.co/350x200/cccccc/000000?text=Kali+Linux';">
+                <div class="text-content">
+                    <h3 class="subsection-title">Family Tree Project</h3>
+                    <p>My immersion in the OSINT (Open Source Intelligence) field unexpectedly ignited a profound passion for genealogical research. What began as a tangential interest quickly evolved into a dedicated pursuit, yielding remarkably successful outcomes in the construction of my own family tree. This journey was particularly intensive throughout 2023, from January to December, during which I meticulously built out my lineage.
+The primary tool in this endeavor was FamilySearch, an invaluable resource that allowed me to delve deep into historical records, census data, vital statistics, and user-contributed information. I found immense satisfaction in piecing together fragmented histories, verifying connections, and uncovering previously unknown ancestors. The process wasn't just about names and dates; it was about understanding the migratory patterns, social contexts, and personal stories that shaped my family's past. This hands-on experience not only enhanced my OSINT methodologies through practical application but also provided a deeply personal and rewarding achievement.</p>
+                </div>
+            </div>
+        </section>
+        <section id="about-me-intro">
+            <div class="content-section">
+                <img src="images/9.png" alt="Profile Picture" onerror="this.onerror=null;this.src='https://placehold.co/350x200/cccccc/000000?text=Profile+Image';">
+                <div class="text-content">
+                    <h3 class="subsection-title">Trading and Investing Journey</h3>
+                    <p>
+Beginning in April 2024, I embarked on a new learning journey into the world of finance, spurred on by suggestions from family members. I pursued my studies independently on YouTube, primarily learning from channels like Mr. RIP and Paolo Coletti.
+
+True to my "nerd" nature, I also experimented with trading. While the practical application of trading doesn't fully capture my interest, I'm captivated by its technical aspects. This includes exploring and implementing various algorithms and leveraging tools like TensorFlow for AI trading</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="digital-exploration">
+            <div class="content-section reverse">
+                <img src="images/10.png" alt="Kali Linux Logo" onerror="this.onerror=null;this.src='https://placehold.co/350x200/cccccc/000000?text=Kali+Linux';">
+                <div class="text-content">
+                    <h3 class="subsection-title">Content Creation...</h3>
+                    <p>Since April 2025, I've been creating and publishing technology-focused videos on YouTube, aiming to help others. My on-camera delivery could use some work; I admit my vocabulary isn't always polished in videos because I get a bit shy. However, the sheer joy I feel when creating content outweighs any embarrassment, and that's what truly matters to me.</p>
+            </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 LemonPower21. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

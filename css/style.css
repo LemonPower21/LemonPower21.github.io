@@ -1,0 +1,57 @@
+/* Stile base */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: hwb(243 6% 42%);
+    color: white;
+    padding: 1em 0;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease; /* Add a smooth transition for the color change */
+}
+
+/* Hover effect for navigation links */
+nav ul li a:hover {
+    color: #ffd700; /* Example: Change text color to gold on hover */
+    text-decoration: underline; /* Example: Add an underline on hover */
+}
+
+main {
+    padding: 20px;
+    max-width: 960px;
+    margin: 20px auto;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Optional: Add some bottom margin to separate from the footer */
+    margin-bottom: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: hwb(243 6% 42%);
+    color: white;
+    position: relative; /* Changed from 'absolute' to 'relative' if you want it to flow with content */
+    bottom: 0;
+    width: 100%;
+}
