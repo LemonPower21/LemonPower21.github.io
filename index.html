@@ -1,30 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta name="google-site-verification" content="jcvACEwj18MUZ6IJCdtGKsMSNRjZO0hMXiLYrMtZRFE" />
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7043033351033202"
-     crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7043033351033202" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Home - LemonPower21</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'primary-blue': 'hwb(243 6% 42%)', // Color of your header
-                        'accent-yellow': '#ffd700', // Hover color for navigation
+                        'primary-blue': 'hwb(243 6% 42%)',
+                        'accent-yellow': '#ffd700',
                     },
                     fontFamily: {
-                        inter: ['Inter', 'sans-serif'], // Inter font
+                        inter: ['Inter', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
     <style>
-        /* Base styles */
         body {
             font-family: 'Inter', sans-serif;
             margin: 0;
@@ -37,19 +35,12 @@
             background-color: hwb(243 6% 42%);
             color: white;
             padding: 1em 0;
-            text-align: center;
             font-weight: bold;
         }
 
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        nav ul li {
-            display: inline; /* Keep navigation items inline */
-            margin: 0 15px;
+        /* Gestione Menu Mobile */
+        #menu-toggle:checked ~ #mobile-menu {
+            display: flex;
         }
 
         nav ul li a {
@@ -71,44 +62,22 @@
             background-color: white;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
-            margin-bottom: 20px;
         }
 
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: hwb(243 6% 42%);
-            color: white;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-            font-weight: bold;
-        }
-
-        /* Specific styles for article sections, adapted from aboutme.html's content-section */
         .article-section {
             display: flex;
             align-items: flex-start;
             margin-bottom: 30px;
-            gap: 20px; /* Consistent gap */
-            padding: 15px; /* Consistent padding */
+            gap: 20px;
+            padding: 15px;
             border-bottom: 1px solid #eee;
-            border-radius: 8px; /* Added for consistency */
-            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hover effects */
-        }
-
-        .article-section:last-of-type {
-            border-bottom: none;
-            margin-bottom: 0;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .article-section:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-        }
-
-        .article-section.reverse {
-            flex-direction: row-reverse;
         }
 
         .article-section img {
@@ -117,88 +86,64 @@
             height: auto;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            object-fit: cover; /* Ensures image covers the container without distortion */
-        }
-
-        .article-section .text-content {
-            flex: 1;
-            font-size: 1.05em;
-            line-height: 1.6;
+            object-fit: cover;
         }
 
         h2.section-title {
             color: hwb(243 6% 42%);
-            margin-top: 0;
-            margin-bottom: 25px;
             text-align: center;
             font-weight: bold;
-            font-size: 2em; /* Kept current size as it looks good for a main title */
+            font-size: 2em;
+            margin-bottom: 25px;
         }
 
-        h3.subsection-title { /* Renamed for consistency with aboutme.html */
-            color: hwb(243 6% 42%);
-            margin-top: 0;
-            margin-bottom: 10px; /* Consistent margin */
-            font-size: 1.5em; /* Consistent size */
-            font-weight: bold; /* Consistent font-weight */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: hwb(243 6% 42%);
+            color: white;
+            font-weight: bold;
         }
 
-        /* Responsive adjustments for smaller screens */
+        /* Responsive */
         @media (max-width: 768px) {
-            /* Kept these responsive rules, but specifically removed the stacking of nav ul li below 480px */
             .article-section {
                 flex-direction: column;
                 align-items: center;
-                gap: 20px;
             }
             .article-section.reverse {
                 flex-direction: column;
             }
             .article-section img {
-                width: 80%;
-                margin-bottom: 20px; /* Consistent margin */
-            }
-            .article-section .text-content {
-                text-align: center;
-            }
-            header {
-                font-size: 1.1em;
-            }
-            nav ul li a {
-                font-size: 1em;
-                margin: 0 8px;
-            }
-            h2.section-title {
-                font-size: 1.7em;
-            }
-            h3.subsection-title { /* Consistent naming */
-                font-size: 1.4em;
-            }
-            main {
-                padding: 15px;
-                margin: 15px auto;
+                width: 100%;
             }
         }
-        /* Removed the @media (max-width: 480px) rule that set nav ul li to display: block;
-            This ensures the navigation stays horizontal on all screen sizes. */
     </style>
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 </head>
 <body>
 
     <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="career.html">Career</a></li>
-                <li><a href="youtube.html">YouTube</a></li>
-                <li><a href="aboutme.html">About Me</a></li>
-                <li><a href="contacts.html">Contacts</a></li>
-                <li><a href="affiliation.html">Affiliations</a></li>
-                <li><a href="https://lemonptech.blogspot.com/" target="_blank">TechBlog</a></li>
-                <li><a href="https://lemonpower21.substack.com/" target="_blank">Substack</a></li>
-                <li><a href="https://ko-fi.com/lemonpower21" target="_blank">Donations</a></li>
-                <li><a href="https://lemonpstore.gumroad.com/" target="_blank">Store</a></li>
+        <nav class="container mx-auto px-4 flex flex-wrap justify-between items-center">
+            <div class="text-xl">LemonPower21</div>
+
+            <button id="hamburger" class="md:hidden block focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+
+            <ul id="nav-links" class="hidden md:flex flex-row space-x-4 w-full md:w-auto mt-4 md:mt-0 text-center md:text-left">
+                <li class="py-2 md:py-0"><a href="index.html">Home</a></li>
+                <li class="py-2 md:py-0"><a href="career.html">Career</a></li>
+                <li class="py-2 md:py-0"><a href="youtube.html">YouTube</a></li>
+                <li class="py-2 md:py-0"><a href="aboutme.html">About Me</a></li>
+                <li class="py-2 md:py-0"><a href="contacts.html">Contacts</a></li>
+                <li class="py-2 md:py-0"><a href="affiliation.html">Affiliations</a></li>
+                <li class="py-2 md:py-0"><a href="https://lemonptech.blogspot.com/" target="_blank">TechBlog</a></li>
+                <li class="py-2 md:py-0"><a href="https://lemonpower21.substack.com/" target="_blank">Substack</a></li>
+                <li class="py-2 md:py-0"><a href="https://ko-fi.com/lemonpower21" target="_blank">Donations</a></li>
+                <li class="py-2 md:py-0"><a href="https://lemonpstore.gumroad.com/" target="_blank">Store</a></li>
             </ul>
         </nav>
     </header>
@@ -210,16 +155,16 @@
         <div class="article-section">
             <img src="https://www.wfyi.org/files/wfyi/articles/original/mayes-county-server-racks.jpg" alt="AI Technology" onerror="this.onerror=null;this.src='https://placehold.co/350x200/cccccc/000000?text=AI+Tech';">
             <div class="text-content">
-                <h3 class="subsection-title">The Revolutionary Impact of Artificial Intelligence on Daily Life</h3>
-                <p>Artificial intelligence (AI) is rapidly transforming our world, integrating into every aspect of daily life. From our smartphones to smart homes, from healthcare to autonomous vehicles, AI is redefining how we interact with technology and with each other. This revolution not only improves efficiency and convenience but also opens new frontiers in areas like personalized medicine and energy management. The future promises even more sophisticated AI, capable of learning and adapting in increasingly complex ways, making it an indispensable tool for addressing the challenges of the 21st century.</p>
+                <h3 class="text-xl font-bold mb-2 text-[hwb(243_6%_42%)]">The Revolutionary Impact of Artificial Intelligence on Daily Life</h3>
+                <p>Artificial intelligence (AI) is rapidly transforming our world, integrating into every aspect of daily life. From our smartphones to smart homes, from healthcare to autonomous vehicles, AI is redefining how we interact with technology.</p>
             </div>
         </div>
 
-        <div class="article-section reverse">
+        <div class="article-section flex-row-reverse">
             <img src="https://bsmedia.business-standard.com/_media/bs/img/misc/2020-12/17/full/stocks-stock-call-buy-sell-trading-ideas-buy-sell-ideas-1608189062-44032620.jpg" alt="Finance and Investments" onerror="this.onerror=null;this.src='https://placehold.co/350x200/cccccc/000000?text=Finance';">
             <div class="text-content">
-                <h3 class="subsection-title">Essential Investment Strategies for Beginners</h3>
-                <p>Navigating the world of investments can seem daunting at first, but understanding some fundamental strategies is the first step toward building a solid financial future. For beginners, it's crucial to start with a clear understanding of their financial goals and risk tolerance. Diversification is a key tactic, which involves spreading investments across different asset classes such as stocks, bonds, and mutual funds, to minimize risks. Long-term investing and understanding the concept of compound interest can make a significant difference over time. Starting with small amounts and gradually increasing your portfolio, perhaps with the help of a financial advisor, can make the investment journey more manageable and successful.</p>
+                <h3 class="text-xl font-bold mb-2 text-[hwb(243_6%_42%)]">Essential Investment Strategies for Beginners</h3>
+                <p>Navigating the world of investments can seem daunting at first, but understanding some fundamental strategies is the first step toward building a solid financial future.</p>
             </div>
         </div>
     </main>
@@ -228,12 +173,16 @@
         <p>&copy; 2026 LemonPower21. All rights reserved.</p>
     </footer>
 
+    <script>
+        const btn = document.getElementById('hamburger');
+        const menu = document.getElementById('nav-links');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
+            menu.classList.toggle('flex-col'); // Mette i link uno sopra l'altro su mobile
+        });
+    </script>
+
 </body>
 </html>
-
-
-
-
-
-
-
