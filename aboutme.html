@@ -1,58 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me</title>
-    <!-- Tailwind CSS CDN for modern styling and responsiveness (used minimally for utility classes) -->
+    <title>About Me - LemonPower21</title>
+    
     <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Francesco Vito Giotta",
-  "alternateName": "LemonPower21",
-  "image": "https://wikialpha.info/images/5/5f/Foto.jpeg",
-  "description": "Tech enthusiast appassionato di Cybersecurity e content creator.",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Putignano",
-    "addressRegion": "Puglia",
-    "addressCountry": "IT"
-  },
-  "knowsAbout": [
-    "Cybersecurity",
-    "Kali Linux",
-    "OSINT",
-    "Python Scripting",
-    "Trading Algorithms",
-    "Genealogy"
-  ],
-  "sameAs": [
-    "https://www.youtube.com/@LemonPower21",
-    "https://www.linkedin.com/in/giotta-francescovito/",
-    "https://github.com/LemonPower21"
-  ]
-}
-</script>
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Francesco Vito Giotta",
+      "alternateName": "LemonPower21",
+      "image": "https://wikialpha.info/images/5/5f/Foto.jpeg",
+      "description": "Tech enthusiast appassionato di Cybersecurity e content creator.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Putignano",
+        "addressRegion": "Puglia",
+        "addressCountry": "IT"
+      },
+      "knowsAbout": [
+        "Cybersecurity",
+        "Kali Linux",
+        "OSINT",
+        "Python Scripting",
+        "Trading Algorithms",
+        "Genealogy"
+      ],
+      "sameAs": [
+        "https://www.youtube.com/@LemonPower21",
+        "https://www.linkedin.com/in/giotta-francescovito/",
+        "https://github.com/LemonPower21"
+      ]
+    }
     </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'primary-blue': 'hwb(243 6% 42%)', // Color of your header
-                        'accent-yellow': '#ffd700', // Hover color for navigation
+                        'primary-blue': 'hwb(243 6% 42%)',
+                        'accent-yellow': '#ffd700',
                     },
                     fontFamily: {
-                        inter: ['Inter', 'sans-serif'], // Inter font
+                        inter: ['Inter', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
-  <style>
-        /* Base styles (reused from previous document) */
+
+    <style>
         body {
             font-family: 'Inter', sans-serif;
             margin: 0;
@@ -65,25 +65,14 @@
             background-color: hwb(243 6% 42%);
             color: white;
             padding: 1em 0;
-            text-align: center;
-            font-weight: bold; /* Make header text bold */
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        nav ul li {
-            display: inline;
-            margin: 0 15px;
+            font-weight: bold;
         }
 
         nav ul li a {
             color: white;
             text-decoration: none;
             transition: color 0.3s ease;
-            font-weight: bold; /* Make navigation links bold */
+            font-weight: bold;
         }
 
         nav ul li a:hover {
@@ -97,60 +86,36 @@
             margin: 20px auto;
             background-color: white;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px; /* Rounded corners for main content */
+            border-radius: 8px;
             margin-bottom: 20px;
         }
 
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: hwb(243 6% 42%);
-            color: white;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-            font-weight: bold; /* Make footer text bold */
-        }
-
-        /* Specific styles for the content sections (adapted from career.html structure) */
         .content-section {
             display: flex;
-            align-items: flex-start; /* Align items to the start of the cross axis */
+            align-items: flex-start;
             margin-bottom: 30px;
-            gap: 20px; /* Space between flex items */
-            padding: 15px; /* Add some padding to sections */
-            border-bottom: 1px solid #eee; /* Separator between sections */
+            gap: 20px;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
         }
 
         .content-section:last-of-type {
-            border-bottom: none; /* No separator for the last section */
-            margin-bottom: 0;
-        }
-
-        .content-section.reverse {
-            flex-direction: row-reverse; /* Reverse order for alternating layout */
+            border-bottom: none;
         }
 
         .content-section img {
-            width: 40%; /* Image takes 40% width in desktop view */
-            max-width: 350px; /* Maximum width for images */
-            height: auto; /* Maintain aspect ratio */
-            border-radius: 8px; /* Rounded corners for images */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for images */
+            width: 40%;
+            max-width: 350px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            object-fit: cover;
         }
 
         .content-section .text-content {
-            flex: 1; /* Text content takes remaining space */
-            font-size: 1.05em; /* Slightly larger text for readability */
-            line-height: 1.6; /* Improved line spacing */
-        }
-
-        h2.section-title {
-            color: hwb(243 6% 42%); /* Match header color */
-            margin-top: 0;
-            margin-bottom: 25px; /* More space below main title */
-            text-align: center;
-            font-weight: bold; /* Make h2 titles bold */
+            flex: 1;
+            font-size: 1.05em;
+            line-height: 1.6;
         }
 
         h3.subsection-title {
@@ -158,115 +123,125 @@
             margin-top: 0;
             margin-bottom: 10px;
             font-size: 1.5em;
-            font-weight: bold; /* Make h3 subsection titles bold */
+            font-weight: bold;
         }
 
-        /* Responsive adjustments for smaller screens */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: hwb(243 6% 42%);
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Responsive Mobile */
         @media (max-width: 768px) {
             .content-section {
-                flex-direction: column; /* Stack items vertically on smaller screens */
-                align-items: center; /* Center align items when stacked */
-            }
-            .content-section.reverse {
-                flex-direction: column; /* Also stack vertically when reversed */
+                flex-direction: column !important;
+                align-items: center;
             }
             .content-section img {
-                width: 80%; /* Images take more width on smaller screens */
-                margin-bottom: 20px; /* Space between image and text when stacked */
+                width: 100%;
+                margin-bottom: 20px;
             }
             .content-section .text-content {
-                text-align: center; /* Center text on mobile for better flow */
+                text-align: center;
             }
         }
     </style>
-        <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 </head>
 <body>
 
     <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="career.html">Career</a></li>
-                <li><a href="youtube.html">YouTube</a></li>
-                <li><a href="aboutme.html">About Me</a></li>
-                <li><a href="contacts.html">Contacts</a></li>
-                <li><a href="affiliation.html">Affiliations</a></li>
-                <li><a href="https://lemonptech.blogspot.com/" target="_blank">TechBlog</a></li>
-                <li><a href="https://lemonpower21.substack.com/" target="_blank">Substack</a></li>
-                <li><a href="https://ko-fi.com/lemonpower21" target="_blank">Donations</a></li>
-                <li><a href="https://lemonpstore.gumroad.com/" target="_blank">Store</a></li>
+        <nav class="container mx-auto px-4 flex flex-wrap justify-between items-center">
+            <div class="text-xl">LemonPower21</div>
+
+            <button id="hamburger" class="md:hidden block focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+
+            <ul id="nav-links" class="hidden md:flex flex-row space-x-5 w-full md:w-auto mt-4 md:mt-0 text-center">
+                <li class="py-2 md:py-0"><a href="index.html">Home</a></li>
+                <li class="py-2 md:py-0"><a href="career.html">Career</a></li>
+                <li class="py-2 md:py-0"><a href="youtube.html">YouTube</a></li>
+                <li class="py-2 md:py-0"><a href="aboutme.html">About Me</a></li>
+                <li class="py-2 md:py-0"><a href="contacts.html">Contacts</a></li>
+                <li class="py-2 md:py-0"><a href="affiliation.html">Affiliations</a></li>
+                <li class="py-2 md:py-0"><a href="https://lemonptech.blogspot.com/" target="_blank">TechBlog</a></li>
+                <li class="py-2 md:py-0"><a href="https://lemonpower21.substack.com/" target="_blank">Substack</a></li>
+                <li class="py-2 md:py-0"><a href="https://ko-fi.com/lemonpower21" target="_blank">Donations</a></li>
+                <li class="py-2 md:py-0"><a href="https://lemonpstore.gumroad.com/" target="_blank">Store</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
+        <h2 class="text-3xl font-bold text-center mb-8 text-[hwb(243_6%_42%)]">About Me</h2>
+
         <section id="about-me-intro">
             <div class="content-section">
                 <img src="images/7.jpg" alt="Profile Picture" onerror="this.onerror=null;this.src='https://placehold.co/350x200/cccccc/000000?text=Profile+Image';">
                 <div class="text-content">
                     <h3 class="subsection-title">My Passion for Technology</h3>
-                    <p>Hello everyone! I'm Francesco Vito Giotta, a young man hailing from the province of Bari in Puglia, Italy. I was born on August 14, 2006 and my passion for technology and computers has been with me since I was little, and my approach to it has always been pretty unique. I remember spending hours watching cartoons on YouTube, and by seven, I was already deep into video games. I even found a bug in "Pocket Ninja," a flash game, and exploited it to beat every level. At nine, smartphone games hooked me, and I immediately started scouring the internet for APKs with "unlimited money" or "unlocked levels" because I wasn't keen on rooting my phone. </p>
+                    <p>Hello everyone! I'm Francesco Vito Giotta, a young man hailing from the province of Bari in Puglia, Italy. Born on August 14, 2006, my passion for technology has been with me since I was little. From exploits in flash games to hunting APKs, my journey started early.</p>
                 </div>
             </div>
         </section>
 
         <section id="digital-exploration">
-            <div class="content-section reverse">
+            <div class="content-section flex-row-reverse">
                 <img src="images/6.png" alt="Kali Linux Logo" onerror="this.onerror=null;this.src='https://placehold.co/350x200/cccccc/000000?text=Kali+Linux';">
                 <div class="text-content">
                     <h3 class="subsection-title">A little hacker is born...</h3>
-                    <p>My fascination with computers, particularly those running Windows, began early: around age of 11. I quickly embraced my inner geek, often installing and reinstalling Windows 7 from a USB stick. The thrill came from hunting down product keys online and bypassing the activation process, a challenge I also tackled with Microsoft Office.
-Those years also sparked my love for video games. I vividly remember discovering titles like Serious Sam, thanks to the YouTuber "Zeb89," and downloading them via torrent from The Pirate Bay. This era also introduced me to the world of Bitcoin. I dove deep into studying mining farms and even attempted to mine with an old PC... fond memories of a time when the digital frontier felt boundless.
-Then when I was thirteen, I stumbled upon Kali Linux and Linux Distros in general, which really ignited my interest in writing Python scripts for what I'd call "micro-hacking."</p>
+                    <p>At 11, I was already reinstalling Windows 7 and hunting for product keys. Later, I discovered Kali Linux and Python, which ignited my interest in "micro-hacking" and the digital frontier.</p>
                 </div>
             </div>
         </section>
 
-        <section id="new-ventures">
+        <section id="hacking-milestones">
             <div class="content-section">
-                <img src="images/7.png" alt="Trading and YouTube Graphics" onerror="this.onerror=null;this.src='https://placehold.co/350x200/cccccc/000000?text=Ventures';">
+                <img src="images/7.png" alt="Cybersecurity" onerror="this.onerror=null;this.src='https://placehold.co/350x200/cccccc/000000?text=Security';">
                 <div class="text-content">
                     <h3 class="subsection-title">Kali Linux: The Leap</h3>
-                                    <p><b>Data Retrieval via Link:</b> I successfully found someone's data by sending a link to their smartphone, which let me grab their user-agent, snap photos with the front camera, and even listen in using their microphone.
-<br><b>Dark Web Exploration:</b> I dove headfirst into the dark web, exploring all its nooks and crannies... I even visited the "Vice Society" website, where I found a ton of illegally obtained data.
-<br><b>UFONet Botnet Utilization:</b> Another milestone was using UFONet, the only public botnet for DDoS attacks.
-<br><b>OSINT Investigations:</b> I've also been able to find personal data through OSINT (Open-Source Intelligence).
-<br><b>Multinational .env File Discovery:</b> Lastly, I've successfully located .env files from various multinational corporations online using GHDB (Google Hacking Database).</p>
-          </div>
+                    <p>
+                        <b>Data Retrieval:</b> Testing security via link-based data retrieval.<br>
+                        <b>Dark Web:</b> Exploring and understanding hidden networks safely.<br>
+                        <b>OSINT:</b> Gathering intelligence from open sources to find personal data and corporate .env files.
+                    </p>
+                </div>
             </div>
         </section>
 
-        <section id="digital-exploration">
-            <div class="content-section reverse">
-                <img src="images/8.png" alt="Kali Linux Logo" onerror="this.onerror=null;this.src='https://placehold.co/350x200/cccccc/000000?text=Kali+Linux';">
+        <section id="genealogy">
+            <div class="content-section flex-row-reverse">
+                <img src="images/8.png" alt="Family Tree" onerror="this.onerror=null;this.src='https://placehold.co/350x200/cccccc/000000?text=Genealogy';">
                 <div class="text-content">
                     <h3 class="subsection-title">Family Tree Project</h3>
-                    <p>My immersion in the OSINT (Open Source Intelligence) field unexpectedly ignited a profound passion for genealogical research. What began as a tangential interest quickly evolved into a dedicated pursuit, yielding remarkably successful outcomes in the construction of my own family tree. This journey was particularly intensive throughout 2023, from January to December, during which I meticulously built out my lineage.
-The primary tool in this endeavor was FamilySearch, an invaluable resource that allowed me to delve deep into historical records, census data, vital statistics, and user-contributed information. I found immense satisfaction in piecing together fragmented histories, verifying connections, and uncovering previously unknown ancestors. The process wasn't just about names and dates; it was about understanding the migratory patterns, social contexts, and personal stories that shaped my family's past. This hands-on experience not only enhanced my OSINT methodologies through practical application but also provided a deeply personal and rewarding achievement.</p>
+                    <p>My OSINT skills led me to genealogy. I spent 2023 meticulously building my family tree using FamilySearch, uncovering migratory patterns and personal stories of my ancestors.</p>
                 </div>
             </div>
         </section>
-        <section id="about-me-intro">
+
+        <section id="trading">
             <div class="content-section">
-                <img src="images/9.png" alt="Profile Picture" onerror="this.onerror=null;this.src='https://placehold.co/350x200/cccccc/000000?text=Profile+Image';">
+                <img src="images/9.png" alt="Finance" onerror="this.onerror=null;this.src='https://placehold.co/350x200/cccccc/000000?text=Trading';">
                 <div class="text-content">
-                    <h3 class="subsection-title">Trading and Investing Journey</h3>
-                    <p>
-Beginning in April 2024, I embarked on a new learning journey into the world of finance, spurred on by suggestions from family members. I pursued my studies independently on YouTube, primarily learning from channels like Mr. RIP and Paolo Coletti.
-
-True to my "nerd" nature, I also experimented with trading. While the practical application of trading doesn't fully capture my interest, I'm captivated by its technical aspects. This includes exploring and implementing various algorithms and leveraging tools like TensorFlow for AI trading</p>
+                    <h3 class="subsection-title">Trading and Investing</h3>
+                    <p>In 2024, I dove into finance, learning from mentors like Mr. RIP and Paolo Coletti. I enjoy the technical side: implementing algorithms and AI trading with TensorFlow.</p>
                 </div>
             </div>
         </section>
 
-        <section id="digital-exploration">
-            <div class="content-section reverse">
-                <img src="images/10.png" alt="Kali Linux Logo" onerror="this.onerror=null;this.src='https://placehold.co/350x200/cccccc/000000?text=Kali+Linux';">
+        <section id="content-creation">
+            <div class="content-section flex-row-reverse">
+                <img src="images/10.png" alt="YouTube" onerror="this.onerror=null;this.src='https://placehold.co/350x200/cccccc/000000?text=YouTube';">
                 <div class="text-content">
                     <h3 class="subsection-title">Content Creation...</h3>
-                    <p>Since April 2025, I've been creating and publishing technology-focused videos on YouTube, aiming to help others. My on-camera delivery could use some work; I admit my vocabulary isn't always polished in videos because I get a bit shy. However, the sheer joy I feel when creating content outweighs any embarrassment, and that's what truly matters to me.</p>
-            </div>
+                    <p>Since 2025, I've been sharing my knowledge on YouTube. Even if I'm a bit shy, the joy of helping others through technology makes it all worth it.</p>
+                </div>
             </div>
         </section>
     </main>
@@ -275,14 +250,16 @@ True to my "nerd" nature, I also experimented with trading. While the practical 
         <p>&copy; 2026 LemonPower21. All rights reserved.</p>
     </footer>
 
+    <script>
+        const btn = document.getElementById('hamburger');
+        const menu = document.getElementById('nav-links');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
+            menu.classList.toggle('flex-col');
+        });
+    </script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
