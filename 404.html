@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta name="google-site-verification" content="jcvACEwj18MUZ6IJCdtGKsMSNRjZO0hMXiLYrMtZRFE" />
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7043033351033202" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Pagina Non Trovata</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-blue': 'hwb(243 6% 42%)',
+                        'accent-yellow': '#ffd700',
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: hwb(243 6% 42%);
+            color: white;
+            padding: 1em 0;
+            font-weight: bold;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color: #ffd700;
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 40px 20px;
+            max-width: 700px;
+            margin: 60px auto;
+            background-color: white;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: hwb(243 6% 42%);
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <nav class="container mx-auto px-4 flex flex-wrap justify-between items-center">
+            <div class="text-xl">LemonPower21</div>
+
+            <button id="hamburger" class="md:hidden block focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+
+            <ul id="nav-links" class="hidden md:flex flex-row space-x-4 w-full md:w-auto mt-4 md:mt-0 text-center md:text-left">
+                <li class="py-2 md:py-0"><a href="index.html">Home</a></li>
+                <li class="py-2 md:py-0"><a href="career.html">Career</a></li>
+                <li class="py-2 md:py-0"><a href="youtube.html">YouTube</a></li>
+                <li class="py-2 md:py-0"><a href="aboutme.html">About Me</a></li>
+                <li class="py-2 md:py-0"><a href="contacts.html">Contacts</a></li>
+                <li class="py-2 md:py-0"><a href="affiliation.html">Affiliations</a></li>
+                <li class="py-2 md:py-0"><a href="https://lemonpower21.substack.com/" target="_blank">Substack</a></li>
+                <li class="py-2 md:py-0"><a href="https://ko-fi.com/lemonpower21" target="_blank">Donations</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 404 CONTENT -->
+    <main class="flex flex-col items-center justify-center min-h-[40vh]">
+        <div class="text-6xl md:text-8xl font-black text-[hwb(243_6%_42%)] mb-4">404</div>
+        <h2 class="text-2xl md:text-3xl font-bold mb-4 text-gray-800">Ops! Pagina non trovata</h2>
+        <p class="text-gray-600 mb-8 max-w-md mx-auto">
+            La pagina che stai cercando potrebbe essere stata rimossa, aver cambiato nome o essere temporaneamente indisponibile.
+        </p>
+        
+        <!-- BOTTONE PER TORNARE IN HOME -->
+        <a href="index.html" class="inline-block bg-[hwb(243_6%_42%)] hover:bg-opacity-90 text-white font-bold px-8 py-3 rounded-lg shadow-md transition transform hover:-translate-y-0.5">
+            ← Go Back Home
+        </a>
+
+        <!-- Flag Counter originale -->
+        <div class="mt-12">
+            <a href="https://info.flagcounter.com/Tvwu"><img src="https://s01.flagcounter.com/count2/Tvwu/bg_FFFFFF/txt_000000/border_CCCCCC/columns_8/maxflags_250/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" border="0"></a>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 LemonPower21. All rights reserved.</p>
+    </footer>
+
+    <!-- SCRIPT HAMBURGER MENU -->
+    <script>
+        const btn = document.getElementById('hamburger');
+        const menu = document.getElementById('nav-links');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
+            menu.classList.toggle('flex-col'); 
+        });
+    </script>
+
+</body>
+</html>
