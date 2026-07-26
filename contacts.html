@@ -36,6 +36,11 @@
             font-weight: bold;
         }
 
+        /* Gestione stato menu mobile */
+        #menu-toggle:checked ~ #mobile-menu {
+            display: flex;
+        }
+
         nav ul li a {
             color: white;
             text-decoration: none;
@@ -133,14 +138,14 @@
                 </svg>
             </button>
 
-            <ul id="nav-links" class="hidden md:flex flex-row space-x-5 w-full md:w-auto mt-4 md:mt-0 text-center">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="career.html">Career</a></li>
-                <li><a href="youtube.html">YouTube</a></li>
-                <li><a href="aboutme.html">About Me</a></li>
-                <li><a href="contacts.html">Contacts</a></li>
-                <li><a href="https://lemonpower21.substack.com/" target="_blank">Substack</a></li>
-                <li><a href="https://ko-fi.com/lemonpower21" target="_blank">Donations</a></li>
+            <ul id="nav-links" class="hidden md:flex flex-row space-x-4 w-full md:w-auto mt-4 md:mt-0 text-center md:text-left">
+                <li class="py-2 md:py-0"><a href="index.html">Home</a></li>
+                <li class="py-2 md:py-0"><a href="career.html">Career</a></li>
+                <li class="py-2 md:py-0"><a href="youtube.html">YouTube</a></li>
+                <li class="py-2 md:py-0"><a href="aboutme.html">About Me</a></li>
+                <li class="py-2 md:py-0"><a href="contacts.html">Contacts</a></li>
+                <li class="py-2 md:py-0"><a href="https://lemonpower21.substack.com/" target="_blank">Substack</a></li>
+                <li class="py-2 md:py-0"><a href="https://ko-fi.com/lemonpower21" target="_blank">Donations</a></li>
             </ul>
         </nav>
     </header>
@@ -149,7 +154,7 @@
         <h2 class="section-title">Get in Touch</h2>
         <div class="social-logos">
             <a href="https://lemonpower21.substack.com/" target="_blank" aria-label="Substack">
-                <img src="images/s.png" alt="Substack" onerror="this.src='https://placehold.co/70x70?text=In'">
+                <img src="images/s.png" alt="Substack" onerror="this.src='https://placehold.co/70x70?text=Substack'">
             </a>
             <a href="https://www.linkedin.com/in/francesco-vito-giotta-969938314/" target="_blank" aria-label="LinkedIn">
                 <img src="images/1.png" alt="LinkedIn" onerror="this.src='https://placehold.co/70x70?text=In'">
@@ -164,7 +169,7 @@
                 <img src="images/2.png" alt="Instagram" onerror="this.src='https://placehold.co/70x70?text=IG'">
             </a>
             <a href="https://www.tiktok.com/@lemonpower21x" target="_blank" aria-label="TikTok">
-                <img src="images/t.png" alt="TikTok" onerror="this.src='https://placehold.co/70x70?text=IG'">
+                <img src="images/t.png" alt="TikTok" onerror="this.src='https://placehold.co/70x70?text=TikTok'">
             </a>
             <a href="mailto:giotta.francescovitosp@gmail.com" aria-label="Email">
                 <img src="images/5.png" alt="Email" onerror="this.src='https://placehold.co/70x70?text=@'">
