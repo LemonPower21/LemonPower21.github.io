@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apertura Automatica Social</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        p {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <p>Apertura dei social network in corso...</p>
+
+    <script>
+        // Si avvia automaticamente al caricamento della pagina
+        window.addEventListener('DOMContentLoaded', () => {
+            const urls = [
+                "https://www.linkedin.com",
+                "https://substack.com",
+                "https://medium.com",
+                "https://www.youtube.com",
+                "https://www.instagram.com",
+                "https://www.tiktok.com"
+            ];
+
+            const delay = 250; // 0.25 secondi
+
+            urls.forEach((url, index) => {
+                setTimeout(() => {
+                    window.open(url, '_blank');
+                }, index * delay);
+            });
+        });
+    </script>
+
+</body>
+</html>
