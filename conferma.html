@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tutto pronto! 📲</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body {
+      background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      padding: 35px 25px;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+    h2 { color: #00b894; margin-bottom: 15px; }
+    p { color: #666; margin-bottom: 20px; }
+    .summary {
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 12px;
+      text-align: left;
+      margin-bottom: 25px;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #333;
+    }
+    .btn-wa {
+      display: inline-block;
+      width: 100%;
+      padding: 14px;
+      background-color: #25D366;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Perfetto, è un appuntamento! 🎉</h2>
+    <p>Ecco il riepilogo delle tue scelte:</p>
+
+    <div class="summary" id="summaryBox">
+      <!-- I dettagli appariranno qui -->
+    </div>
+
+    <a id="waLink" href="#" target="_blank" class="btn-wa">Invia su WhatsApp 📲</a>
+  </div>
+
+  <script>
+    // Inserisci il TUO numero con prefisso (es: 393331234567)
+    const TUO_NUMERO = "393319417784"; 
+
+    const dataRaw = localStorage.getItem('dateDetails');
+    
+    if (dataRaw) {
+      const details = JSON.parse(dataRaw);
+      
+      document.getElementById('summaryBox').innerHTML = `
+        📌 <b>Data:</b> ${details.data}<br>
+        ⏰ <b>Ora:</b> ${details.ora}<br>
+        🎯 <b>Attività:</b> ${details.attivita}<br>
+        🍕 <b>Cibo:</b> ${details.cibo}
+      `;
+
+      // Creazione del messaggio WhatsApp
+      const messaggio = `Ciao! Ho compilato l'invito 🥰%0A%0A` +
+        `📅 *Data:* ${details.data}%0A` +
+        `⏰ *Ora:* ${details.ora}%0A` +
+        `🎯 *Cosa facciamo:* ${details.attivita}%0A` +
+        `🍕 *Cosa mangiamo:* ${details.cibo}%0A%0A` +
+        `Non vedo l'ora! ❤️`;
+
+      document.getElementById('waLink').href = `https://wa.me/${TUO_NUMERO}?text=${messaggio}`;
+    } else {
+      document.getElementById('summaryBox').innerText = "Nessun dato trovato. Torna indietro e seleziona le opzioni!";
+    }
+  </script>
+</body>
+</html>
