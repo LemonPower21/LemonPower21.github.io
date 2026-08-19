@@ -6,6 +6,7 @@
   <title>Ho una domanda per te... 💖</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    
     body {
       background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #feada6 100%);
       height: 100vh;
@@ -13,39 +14,77 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      overflow: hidden;
+      overflow: hidden; /* Impedisce barre di scorrimento se il bottone scappa */
     }
+
     .card {
       background: rgba(255, 255, 255, 0.9);
-      padding: 40px 30px;
-      border-radius: 20px;
+      padding: 50px 30px;
+      border-radius: 30px;
       box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-      max-width: 400px;
+      max-width: 420px;
       width: 90%;
       position: relative;
+      z-index: 10; /* Sopra il bottone che scappa */
     }
-    h1 { color: #d63384; font-size: 2rem; margin-bottom: 15px; }
-    p { color: #555; font-size: 1.1rem; margin-bottom: 30px; }
-    .buttons {
+
+    h1 { color: #d63384; font-size: 2.2rem; margin-bottom: 15px; }
+    p { color: #555; font-size: 1.2rem; margin-bottom: 40px; }
+
+    .buttons-container {
       display: flex;
       justify-content: center;
-      gap: 20px;
-      min-height: 50px;
+      align-items: center;
+      gap: 25px;
+      /* Creiamo un'area fissa per i bottoni per evitare scatti nel layout */
+      height: 60px; 
       position: relative;
     }
+
+    /* --- STILE CONDIVISO PER ENTRAMBI I BOTTONI (Stessa Forma) --- */
     .btn {
-      padding: 12px 28px;
-      font-size: 1.1rem;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
+      /* Dimensioni e Forma Fisse */
+      width: 140px;
+      height: 55px;
+      border-radius: 50px; /* Forma a pillola */
+      
+      /* Allineamento Testo */
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      
+      /* Font e Stile */
+      font-size: 1.2rem;
       font-weight: bold;
-      transition: transform 0.2s;
       text-decoration: none;
+      border: none;
+      cursor: pointer;
+      
+      /* Transizioni fluide */
+      transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
     }
-    .btn-yes { background-color: #ff4757; color: white; box-shadow: 0 5px 15px rgba(255,71,87,0.4); }
-    .btn-yes:hover { transform: scale(1.08); }
-    .btn-no { background-color: #e0e0e0; color: #333; position: absolute; right: 20px; }
+
+    /* --- STILE SPECIFICO: SÌ --- */
+    .btn-yes {
+      background-color: #ff4757;
+      color: white;
+      box-shadow: 0 5px 15px rgba(255,71,87,0.4);
+    }
+    .btn-yes:hover {
+      transform: scale(1.05);
+      background-color: #ff6b81;
+    }
+
+    /* --- STILE SPECIFICO: NO --- */
+    .btn-no {
+      background-color: #f1f2f6;
+      color: #57606f;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+      
+      /* Necessario per il posizionamento JS iniziale */
+      position: relative; 
+      z-index: 5;
+    }
   </style>
 </head>
 <body>
@@ -54,7 +93,7 @@
     <h1>Vuoi uscire con me? 🌹</h1>
     <p>Prometto cibo buono, risate e zero noia!</p>
     
-    <div class="buttons">
+    <div class="buttons-container">
       <a href="appuntamento.html" class="btn btn-yes">Sì! 🥰</a>
       <button class="btn btn-no" id="noBtn">No 😜</button>
     </div>
@@ -63,17 +102,37 @@
   <script>
     const noBtn = document.getElementById('noBtn');
 
-    // Il bottone "No" scappa quando ci si passa sopra col mouse o lo si tocca
-    function moveButton() {
-      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 40);
-      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 40);
+    // Funzione migliorata per spostare il bottone senza cambiarne la forma
+    function moveButton(e) {
+      // Dimensioni del viewport
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+
+      // Dimensioni del bottone (140x55)
+      const btnWidth = 140;
+      const btnHeight = 55;
+
+      // Margine di sicurezza dai bordi
+      const margin = 30;
+
+      // Calcola nuove coordinate casuali
+      let x = Math.random() * (vw - btnWidth - margin * 2) + margin;
+      let y = Math.random() * (vh - btnHeight - margin * 2) + margin;
+
+      // Applica il posizionamento fisso e le nuove coordinate
       noBtn.style.position = 'fixed';
       noBtn.style.left = `${x}px`;
       noBtn.style.top = `${y}px`;
     }
 
+    // Eventi mouse e touch
     noBtn.addEventListener('mouseover', moveButton);
-    noBtn.addEventListener('touchstart', moveButton);
+    
+    // Per i dispositivi touch, usiamo touchend per rilevare il tentativo di tap
+    noBtn.addEventListener('touchend', (e) => {
+      e.preventDefault(); // Impedisce il click e il menu contestuale
+      moveButton();
+    });
   </script>
 </body>
 </html>
