@@ -19,7 +19,7 @@
 
     .card {
       background: rgba(255, 255, 255, 0.9);
-      padding: 50px 30px;
+      padding: 35px 30px;
       border-radius: 30px;
       box-shadow: 0 15px 35px rgba(0,0,0,0.1);
       max-width: 420px;
@@ -28,8 +28,19 @@
       z-index: 10; /* Sopra il bottone che scappa */
     }
 
-    h1 { color: #d63384; font-size: 2.2rem; margin-bottom: 15px; }
-    p { color: #555; font-size: 1.2rem; margin-bottom: 40px; }
+    h1 { color: #d63384; font-size: 2rem; margin-bottom: 15px; }
+
+    /* --- STILE PER LA GIF DEL GATTO --- */
+    .cat-gif {
+      width: 100%;
+      max-width: 180px;
+      height: auto;
+      border-radius: 15px;
+      margin-bottom: 15px;
+      object-fit: cover;
+    }
+
+    p { color: #555; font-size: 1.1rem; margin-bottom: 30px; }
 
     .buttons-container {
       display: flex;
@@ -91,6 +102,10 @@
 
   <div class="card">
     <h1>Vuoi uscire con me? 🌹</h1>
+    
+    <!-- GIF del gatto da GitHub (Raw URL) -->
+    <img src="https://raw.githubusercontent.com/LemonPower21/LemonPower21.github.io/main/images/cat4girls.gif" alt="Gatto carino" class="cat-gif">
+    
     <p>Prometto cibo buono, risate e zero noia!</p>
     
     <div class="buttons-container">
