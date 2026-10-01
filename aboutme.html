@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - LemonPower21</title>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Francesco Vito Giotta",
+      "alternateName": "LemonPower21",
+      "image": "https://wikialpha.info/images/5/5f/Foto.jpeg",
+      "description": "Tech enthusiast passionate about Cybersecurity, Computer Engineering, and Content Creation.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Putignano",
+        "addressRegion": "Puglia",
+        "addressCountry": "IT"
+      },
+      "knowsAbout": [
+        "Cybersecurity",
+        "Kali Linux",
+        "OSINT",
+        "Python Scripting",
+        "Algorithmic Trading",
+        "Genealogy"
+      ],
+      "sameAs": [
+        "https://www.youtube.com/@LemonPower21",
+        "https://www.linkedin.com/in/giotta-francescovito/",
+        "https://github.com/LemonPower21"
+      ]
+    }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-blue': 'hwb(243 6% 42%)',
+                        'accent-yellow': '#ffd700',
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: hwb(243 6% 42%);
+            color: white;
+            padding: 1em 0;
+            font-weight: bold;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color: #ffd700;
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 20px;
+            max-width: 960px;
+            margin: 20px auto;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .content-section {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            gap: 20px;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .content-section:last-of-type {
+            border-bottom: none;
+        }
+
+        .content-section img {
+            width: 40%;
+            max-width: 350px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            object-fit: cover;
+        }
+
+        .content-section .text-content {
+            flex: 1;
+            font-size: 1.05em;
+            line-height: 1.6;
+        }
+
+        h3.subsection-title {
+            color: hwb(243 6% 42%);
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: hwb(243 6% 42%);
+            color: white;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .content-section {
+                flex-direction: column !important;
+                align-items: center;
+            }
+            .content-section img {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            .content-section .text-content {
+                text-align: center;
+            }
+        }
+    </style>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+</head>
+<body>
+
+    <header>
+        <nav class="container mx-auto px-4 flex flex-wrap justify-between items-center">
+            <div class="text-xl">LemonPower21</div>
+
+            <button id="hamburger" class="md:hidden block focus:outline-none" aria-label="Navigation Menu">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+
+            <ul id="nav-links" class="hidden md:flex flex-row space-x-6 w-full md:w-auto mt-4 md:mt-0 text-center md:text-left">
+                <li class="py-3 md:py-0"><a href="index.html" class="block w-full">Home</a></li>
+                <li class="py-3 md:py-0"><a href="aboutme.html" class="block w-full">About Me</a></li>
+                <li class="py-3 md:py-0"><a href="projects.html" class="block w-full">Projects</a></li>
+                <li class="py-3 md:py-0"><a href="contacts.html" class="block w-full">Contacts</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="about-me-intro">
+            <div class="content-section">
+                <img src="images/7.jpg" alt="Profile Picture" onerror="this.onerror=null;this.src='https://placehold.co/350x200/cccccc/000000?text=Profile+Image';">
+                <div class="text-content">
+                    <h3 class="subsection-title">My Passion for Technology</h3>
+                    <p>Hello everyone! My name is Francesco Vito Giotta, born on August 14, 2006, from Putignano, in the province of Bari, Italy. My passion for computer science and technology has deep roots in my early childhood, driven from the very beginning by a strong curiosity for how software systems and digital architectures operate.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="digital-exploration">
+            <div class="content-section flex-row-reverse">
+                <img src="images/6.png" alt="Kali Linux Logo" onerror="this.onerror=null;this.src='https://placehold.co/350x200/cccccc/000000?text=Kali+Linux';">
+                <div class="text-content">
+                    <h3 class="subsection-title">First Steps in Development & Hacking</h3>
+                    <p>By the age of 11, I was already configuring advanced operating systems and researching technical solutions for my problems. Later on, discovering Kali Linux and Python shaped my core interests toward cybersecurity and automation scripting (and even webscraping). </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="hacking-milestones">
+            <div class="content-section">
+                <img src="images/7.png" alt="Cybersecurity" onerror="this.onerror=null;this.src='https://placehold.co/350x200/cccccc/000000?text=Security';">
+                <div class="text-content">
+                    <h3 class="subsection-title">Areas of Focus and Competencies</h3>
+                    <p>
+                        <b>Security Analysis:</b> Evaluating and auditing link-based data retrieval and data protection protocols.<br>
+                        <b>Network Security:</b> Exploring hidden networks and robust infrastructure standards safely.<br>
+                        <b>OSINT (Open Source Intelligence):</b> Gathering and analyzing public intelligence sources for digital research and corporate threat prevention.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="genealogy">
+            <div class="content-section flex-row-reverse">
+                <img src="images/8.png" alt="Family Tree" onerror="this.onerror=null;this.src='https://placehold.co/350x200/cccccc/000000?text=Genealogy';">
+                <div class="text-content">
+                    <h3 class="subsection-title">Genealogical Research Project</h3>
+                    <p>Applying OSINT research and analytical techniques, in 2023 I undertook a meticulous project to reconstruct my family tree using FamilySearch, uncovering migratory patterns and personal histories of my ancestors.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="trading">
+            <div class="content-section">
+                <img src="images/9.png" alt="Finance and Trading" onerror="this.onerror=null;this.src='https://placehold.co/350x200/cccccc/000000?text=Trading';">
+                <div class="text-content">
+                    <h3 class="subsection-title">Finance and Investments</h3>
+                    <p>In 2024, I dove into financial markets, building analysis algorithms using Python libraries such as <code>yfinance</code> and <code>pandas</code>, while also evaluating AI-driven trading models with TensorFlow. Eventually, I realized that the most robust approach to trading is a long-term, fundamentals-oriented strategy.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 LemonPower21. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const btn = document.getElementById('hamburger');
+        const menu = document.getElementById('nav-links');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
+            menu.classList.toggle('flex-col');
+        });
+    </script>
+</body>
+</html>

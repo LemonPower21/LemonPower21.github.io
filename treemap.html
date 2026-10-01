@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ApuBasTree Map 🌲</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
+    
+    <style>
+        body { margin: 0; font-family: 'Segoe UI', system-ui, sans-serif; background: #222; overflow: hidden; touch-action: none; }
+        #map { height: 100vh; width: 100vw; background: #aad3df; }
+        
+        .menu-fab {
+            position: absolute; top: 15px; left: 15px; z-index: 2200;
+            background: #28a745; color: white; border: none;
+            width: 55px; height: 55px; border-radius: 50%;
+            font-size: 24px; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4); cursor: pointer;
+        }
+
+        .admin-panel {
+            position: absolute; top: 0; left: 0; height: 100vh; z-index: 2300;
+            background: white; padding: 25px; width: 320px; max-width: 85vw;
+            box-shadow: 5px 0 25px rgba(0,0,0,0.2);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto; display: flex; flex-direction: column; box-sizing: border-box;
+        }
+        .admin-panel.collapsed { transform: translateX(-105%); }
+
+        .header-menu { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+        .close-btn { background: #f1f1f1; border: none; padding: 8px 15px; border-radius: 8px; cursor: pointer; font-weight: bold; }
+
+        .search-container { display: flex; gap: 8px; margin-bottom: 5px; }
+        #search-input, #treeNote, #treeImg, .geo-btn, .save-btn { 
+            width: 100%; padding: 14px; margin-top: 10px; border: 1px solid #ddd; 
+            border-radius: 10px; font-size: 16px; box-sizing: border-box; outline: none;
+        }
+        #search-input { margin-top: 0; border: 2px solid #28a745; }
+        .search-btn { width: 70px; background: #28a745; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; }
+        .geo-btn { background: #f8f9fa; color: #333; font-weight: bold; cursor: pointer; border: 1px solid #ddd; }
+        .save-btn { background: #28a745; color: white; font-weight: bold; border: none; margin-top: 20px; cursor: pointer; }
+
+        #coord-status { font-size: 13px; margin-top: 15px; text-align: center; padding: 10px; border-radius: 8px; background: #fff5f5; color: #d9534f; }
+
+        .custom-popup { text-align: center; width: 200px; padding: 5px; }
+        .custom-popup img { max-width: 100%; border-radius: 10px; margin-top: 10px; }
+        
+        .leaflet-control-zoom { display: none; }
+    </style>
+    <meta name="google-site-verification" content="jcvACEwj18MUZ6IJCdtGKsMSNRjZO0hMXiLYrMtZRFE" />
+</head>
+<body>
+
+    <button class="menu-fab" onclick="openUI()">🌲</button>
+
+    <div class="admin-panel collapsed" id="ui-panel">
+        <div class="header-menu">
+            <b>ApuBasTree Map</b>
+            <button class="close-btn" onclick="closeUI()">✕</button>
+        </div>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search city or street...">
+            <button class="search-btn" id="btn-vai">GO</button>
+        </div>
+        <button class="geo-btn" onclick="locateMe()">📍 USE MY LOCATION</button>
+        <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
+        <div id="coord-status">⚠️ Long press on map to add a point</div>
+        <input type="text" id="treeNote" placeholder="Name or note (e.g. Olive Tree)">
+        <input type="text" id="treeImg" placeholder="Image link (URL)">
+        <button class="save-btn" onclick="saveCurrentTree()">SAVE TO MAP</button>
+    </div>
+
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // --- CONFIGURATION ---
+        const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTuyT4fM1SjsDwY2zWbNo8cNxnj8roA_snL_C83Bslyo8YM62KPFs7X2SHmxPad959yfbJG1L1HJofb/pub?gid=1652944660&single=true&output=csv';
+        const FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdFcTVX--HL6YjNLMk2g_LMZpA_CjQ9-hxcDrCJTbNu5953Zg/formResponse';
+        
+        const ENTRY_LAT = 'entry.1814676774'; 
+        const ENTRY_LNG = 'entry.1088868105';
+        const ENTRY_NOTE = 'entry.860881001';
+        const ENTRY_IMG = 'entry.1499570985';
+
+        const panel = document.getElementById('ui-panel');
+        const statusText = document.getElementById('coord-status');
+        const searchInput = document.getElementById('search-input');
+        let tempMarker = null;
+        let activeCoords = null;
+
+        const map = L.map('map', { center: [41.11, 16.87], zoom: 8, tap: false });
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap' }).addTo(map);
+
+        function openUI() { panel.classList.remove('collapsed'); }
+        function closeUI() { panel.classList.add('collapsed'); }
+
+        // --- LOADING FUNCTION WITH DATA CLEANING ---
+        async function loadPoints() {
+            try {
+                const resp = await fetch(CSV_URL + '&cachebuster=' + new Date().getTime());
+                const csvData = await resp.text();
+                const lines = csvData.split(/\r?\n/).slice(1); 
+
+                map.eachLayer(layer => {
+                    if (layer instanceof L.Marker && layer !== tempMarker) map.removeLayer(layer);
+                });
+
+                lines.forEach(line => {
+                    if (!line.trim()) return;
+                    const cols = line.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g) || line.split(',');
+                    const cleanCols = cols.map(c => c.trim().replace(/^"|"$/g, ''));
+
+                    if (cleanCols.length < 3) return;
+
+                    // Cleaning: remove protective apostrophe and fix large integers if necessary
+                    let latStr = cleanCols[1].replace(/'/g, '').replace(/\./g, '').replace(',', '.');
+                    let lngStr = cleanCols[2].replace(/'/g, '').replace(/\./g, '').replace(',', '.');
+
+                    if (latStr.length > 5 && !latStr.includes('.')) {
+                        latStr = latStr.substring(0, 2) + '.' + latStr.substring(2);
+                    }
+                    if (lngStr.length > 5 && !lngStr.includes('.')) {
+                        lngStr = lngStr.substring(0, 2) + '.' + lngStr.substring(2);
+                    }
+
+                    const lat = parseFloat(latStr);
+                    const lng = parseFloat(lngStr);
+                    const note = cleanCols[3] || "Point";
+                    const img = cleanCols[4] || "";
+
+                    if (!isNaN(lat) && !isNaN(lng)) {
+                        L.marker([lat, lng]).addTo(map)
+                         .bindPopup(`<div class="custom-popup"><b>${note}</b>${img ? `<br><img src="${img}" style="width:100%; border-radius:8px; margin-top:8px;" onerror="this.style.display='none'">` : ''}</div>`);
+                    }
+                });
+            } catch (err) { console.error("Loading error:", err); }
+        }
+
+        // --- SAVE FUNCTION WITH APOSTROPHE PROTECTION ---
+        function saveCurrentTree() {
+            if (!activeCoords) return alert("Please select a location on the map!");
+            
+            const btn = document.querySelector('.save-btn');
+            btn.innerText = "SENDING...";
+            btn.disabled = true;
+
+            const formData = new FormData();
+            // Prefix with apostrophe to force Google Sheets to save as STRING
+            formData.append(ENTRY_LAT, "'" + activeCoords.lat.toString());
+            formData.append(ENTRY_LNG, "'" + activeCoords.lng.toString());
+            formData.append(ENTRY_NOTE, document.getElementById('treeNote').value);
+            formData.append(ENTRY_IMG, document.getElementById('treeImg').value);
+
+            fetch(FORM_URL, { method: 'POST', mode: 'no-cors', body: formData })
+            .then(() => {
+                alert("Saved! It will appear on the map shortly.");
+                resetForm();
+                setTimeout(loadPoints, 4000); 
+            })
+            .catch(() => alert("Submission error. Please check your connection."))
+            .finally(() => {
+                btn.innerText = "SAVE TO MAP";
+                btn.disabled = false;
+            });
+        }
+
+        function resetForm() {
+            if (tempMarker) map.removeLayer(tempMarker);
+            tempMarker = null; activeCoords = null;
+            document.getElementById('treeNote').value = '';
+            document.getElementById('treeImg').value = '';
+            statusText.innerText = "⚠️ Long press on map to add a point";
+            statusText.style.background = "#fff5f5";
+            statusText.style.color = "#d9534f";
+            closeUI();
+        }
+
+        function onMapHold(e) {
+            activeCoords = e.latlng;
+            if (tempMarker) map.removeLayer(tempMarker);
+            tempMarker = L.marker(activeCoords, { opacity: 0.8 }).addTo(map);
+            statusText.innerText = "✅ Position selected!";
+            statusText.style.background = "#f0fff4";
+            statusText.style.color = "#28a745";
+            openUI();
+        }
+
+        map.on('contextmenu', onMapHold);
+        let pressTimer;
+        map.on('mousedown touchstart', (e) => pressTimer = window.setTimeout(() => onMapHold(e), 800));
+        map.on('mouseup mouseleave touchend touchmove', () => clearTimeout(pressTimer));
+
+        async function searchLocation() {
+            const q = searchInput.value;
+            if (!q) return;
+            const r = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(q)}`);
+            const d = await r.json();
+            if (d.length > 0) { map.setView([d[0].lat, d[0].lon], 14); closeUI(); }
+        }
+        document.getElementById('btn-vai').onclick = searchLocation;
+        function locateMe() { map.locate({setView: true, maxZoom: 16}); closeUI(); }
+
+        loadPoints();
+        setInterval(loadPoints, 60000);
+    </script>
+</body>
+</html>

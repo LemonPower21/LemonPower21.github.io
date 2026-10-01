@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorldVertiser</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #333333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            text-align: center;
+            padding: 40px 20px 20px 20px;
+        }
+
+        .logo-container {
+            display: inline-block;
+            background-color: #c0392b;
+            width: 130px;
+            height: 130px;
+            border-radius: 4px;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* Icona globo stilizzata in CSS puro */
+        .logo-icon {
+            position: absolute;
+            top: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+            border: 3px solid white;
+            border-radius: 50%;
+        }
+        .logo-icon::before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 2px;
+            width: 40px;
+            height: 1px;
+            background: white;
+        }
+        .logo-icon::after {
+            content: "";
+            position: absolute;
+            top: 25px;
+            left: 2px;
+            width: 40px;
+            height: 1px;
+            background: white;
+        }
+        .wifi-waves {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 24px;
+            height: 12px;
+            border-top: 3px solid white;
+            border-radius: 50% 50% 0 0/100% 100% 0 0;
+        }
+
+        .logo-text {
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            position: absolute;
+            bottom: 15px;
+            width: 100%;
+            text-align: center;
+            font-family: serif;
+        }
+
+        h1 {
+            font-family: Georgia, serif;
+            color: #5c7c8a;
+            font-size: 2.8rem;
+            margin-top: 20px;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
+        nav {
+            border-top: 1px solid #dcdcdc;
+            border-bottom: 1px solid #dcdcdc;
+            padding: 10px 0;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        nav a {
+            color: #5c7c8a;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            margin: 0 15px;
+        }
+
+        /* Main Content Layout */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px 60px 20px;
+        }
+
+        .content-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: flex-start;
+            border-bottom: 1px solid #5c7c8a;
+            padding-bottom: 40px;
+            margin-bottom: 40px;
+        }
+
+        /* Preview Card (Left Column) */
+        .preview-card {
+            flex: 1;
+            min-width: 320px;
+            max-width: 380px;
+            background-color: #1a1a1a;
+            border-radius: 6px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            color: #e0e0e0;
+            font-size: 0.85rem;
+        }
+
+        .preview-header {
+            color: #f39c12;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .preview-date {
+            font-size: 0.75rem;
+            color: #888;
+            margin-bottom: 15px;
+        }
+
+        .preview-section-title {
+            color: #f39c12;
+            font-weight: bold;
+            font-size: 0.85rem;
+            margin: 15px 0 10px 0;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+        }
+
+        .stock-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+            font-size: 0.8rem;
+        }
+
+        .stock-val {
+            color: #e74c3c;
+        }
+
+        .weather-box {
+            background-color: #2c1a1a;
+            border-left: 3px solid #e74c3c;
+            padding: 8px;
+            font-size: 0.75rem;
+            color: #e74c3c;
+            margin-bottom: 15px;
+        }
+
+        .news-item {
+            margin-bottom: 10px;
+            font-size: 0.75rem;
+        }
+
+        .news-item a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        /* Description Text (Right Column) */
+        .description-column {
+            flex: 2;
+            min-width: 300px;
+            font-size: 0.95rem;
+            color: #444;
+        }
+
+        .description-column p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        /* Bottom Full-Width Text */
+        .bottom-section {
+            font-size: 0.95rem;
+            color: #444;
+            max-width: 100%;
+        }
+
+        .bottom-section p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        /* Credits Footer Section */
+        .credits-footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #5c7c8a;
+            font-weight: bold;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .content-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+            .preview-card {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <div class="wifi-waves"></div>
+            <div class="logo-icon"></div>
+            <div class="logo-text">WorldVertiser</div>
+        </div>
+        <h1>WorldVertiser</h1>
+        <nav>
+            <a href="#worldvertiser">WORLDVERTISER</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <!-- Sezione Centrale (Grid: Anteprima + Testo) -->
+        <div class="content-grid">
+            <!-- Colonna Sinistra: Card anteprima email -->
+            <div class="preview-card">
+                <div class="preview-header">📍 Riepilogo Quotidiano - World Vertiser</div>
+                <div class="preview-date">Data aggiornamento: 19/04/2026 08:30</div>
+                
+                <div class="preview-section-title">📈 Indici di Borsa Mondiali</div>
+                <div class="stock-item"><span>S&P 500<br><small>Ultimo 5062.51 - Delta</small></span><span class="stock-val">-1.75%</span></div>
+                <div class="stock-item"><span>CAC 40<br><small>Ultimo 8087.48 - Delta</small></span><span class="stock-val">-1.77%</span></div>
+                <div class="stock-item"><span>DAX 40<br><small>Ultimo 17814.30 - Delta</small></span><span class="stock-val">-1.89%</span></div>
+                <div class="stock-item"><span>NASDAQ Composite<br><small>Ultimo 15796.83 - Delta</small></span><span class="stock-val">-2.05%</span></div>
+                
+                <div class="preview-section-title">🌤️ Meteo a Torino</div>
+                <div class="weather-box">⚠️ Errore nel recupero meteo. Controlla WEATHER_API_KEY</div>
+                
+                <div class="preview-section-title">📰 Notizie Principali (Top 5)</div>
+                <div class="news-item">
+                    • Le più recenti notizie dal web mettono in luce gli investimenti record delle grandi aziende nel fotovoltaico... <a href="#">[leggi]</a>
+                </div>
+                <div class="news-item">
+                    • 'Data leaks' digitalizzati: 700 passeggeri per una profonda crisi... <a href="#">[leggi]</a>
+                </div>
+                <div class="news-item">
+                    • Contenuti extracurriculari per i ministri: le direttive ministeriali a Bruxelles, Dublino e Londra... <a href="#">[leggi]</a>
+                </div>
+            </div>
+
+            <!-- Colonna Destra: Testo descrittivo -->
+            <div class="description-column">
+                <p>Worldvertise constitues an automated utility designed for the generation and email delivery of a daily information summary. This tool integrates real-time data from three distinct external sources: financial markets, current weather conditions, and major news headlines, producing a highly structured HTML report suitable for routine information monitoring.</p>
+                
+                <p>The process begins in the configuration section (section 1), where all essential credentials and parameters are centralised to facilitate maintenance. Email credentials are defined (sender's address, recipient, and the specific Google app password necessary for secure access to the Gmail SMTP server), along with key identifiers for external services, such as the API keys for NewsAPI and OpenWeatherMap, and the target city for meteorological information. A crucial element of this section is the index dictionary, which associates common market index names with their respective tickers recognised by the yfinance library.</p>
+                
+                <p>The data retrieval functions section (section 2) is responsible for obtaining and pre-processing the raw data. The <code>get_news()</code> function establishes a connection with NewsAPI to acquire the five most recent news articles in Italian, extracting the title, source, and clickable URL. Concurrently, the <code>get_weather(city)</code> function queries OpenWeatherMap to retrieve the current temperature and a textual description of the conditions. The most complex component, <code>get_stock_market(indici_map)</code>, utilises the yfinance library to download the latest opening and closing prices for all defined indices.</p>
+                
+                <p>Subsequently, it calculates the daily percentage change. It applies inline CSS styles to the resulting HTML code, conditionally formatting the price and variance in green for increases and red for decreases, ensuring immediate visual interpretation within the email message.</p>
+            </div>
+        </div>
+
+        <!-- Sezione Inferiore -->
+        <div class="bottom-section">
+            <p>The final stage is managed by the email sending function (<code>send_daily_summary</code>) (section 3), which orchestrates the assembly and transmission of the final report. This function first aggregates all the data produced by the retrieval functions and constructs the final email body as a comprehensive, well-structured HTML document.</p>
+            
+            <p>News items are incorporated as clickable hyperlinks, while the market and weather reports are inserted using the styled HTML elements generated previously. Finally, it employs the standard Python library smtplib to establish a secure ssl connection with the Gmail SMTP server and, following authentication via the app password, dispatches the compiled email message to the designated recipient, ensuring reliable, automated delivery of the daily briefing.</p>
+        </div>
+
+        <!-- Sezione Credits LemonPower21 -->
+        <div class="credits-footer">
+            Credits LemonPower21
+        </div>
+    </div>
+
+</body>
+</html>
