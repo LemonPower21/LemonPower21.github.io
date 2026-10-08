@@ -186,7 +186,6 @@
             border-color: var(--blue-500);
             box-shadow: 0 25px 50px -25px rgba(26,21,144,.55);
         }
-        /* Contenitore immagine con sfondo e immagine intera */
         .card-img-container {
             background: var(--blue-50);
             display: flex;
@@ -223,7 +222,12 @@
         .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
         .reveal.visible { opacity: 1; transform: none; }
 
-        footer.site-footer { background: var(--blue-800); color: rgba(255,255,255,.85); }
+        /* FOOTER A PIENA LARGHEZZA */
+        footer.site-footer { 
+            background: var(--blue-800); 
+            color: rgba(255,255,255,.85); 
+            width: 100%;
+        }
 
         @media (prefers-reduced-motion: reduce) {
             .reveal { transition: none; opacity: 1; transform: none; }
@@ -273,15 +277,9 @@
         </svg>
     </section>
 
+    <!-- MAIN CONTENT -->
     <main class="max-w-6xl mx-auto px-5">
 
-        <!-- STATS -->
-        <section class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 pb-20 reveal">
-            <div class="stat"><div class="value">Python</div><div class="label">Automation</div></div>
-            <div class="stat"><div class="value">Security</div><div class="label">Networks &amp; Cyber</div></div>
-            <div class="stat"><div class="value">Software</div><div class="label">Architecture</div></div>
-            <div class="stat"><div class="value">2025</div><div class="label">On YouTube</div></div>
-        </section>
 
         <!-- CARDS -->
         <h2 class="section-title reveal mb-12">What I do?</h2>
@@ -315,8 +313,10 @@
                 </div>
             </article>
         </section>
-    </main>
 
+    </main> <!-- Chiusura del tag main -->
+
+    <!-- FOOTER (Ora all'esterno di main per coprire il 100% della larghezza) -->
     <footer class="site-footer text-center py-8 text-sm font-semibold">
         <p>&copy; 2026 LemonPower21. All rights reserved.</p>
     </footer>
