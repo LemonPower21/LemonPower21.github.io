@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-<head> 
+<head>
     <meta name="google-site-verification" content="jcvACEwj18MUZ6IJCdtGKsMSNRjZO0hMXiLYrMtZRFE" />
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7043033351033202" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
@@ -186,8 +186,20 @@
             border-color: var(--blue-500);
             box-shadow: 0 25px 50px -25px rgba(26,21,144,.55);
         }
-        .card img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
-        .card:hover img { transform: scale(1.05); }
+        /* Contenitore immagine con sfondo e immagine intera */
+        .card-img-container {
+            background: var(--blue-50);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .card img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: contain; 
+            transition: transform .6s ease; 
+        }
+        .card:hover img { transform: scale(1.03); }
         .card h3 { color: var(--blue-800); }
         .card .tag {
             display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .06em;
@@ -275,7 +287,7 @@
         <h2 class="section-title reveal mb-12">What I do?</h2>
         <section class="grid md:grid-cols-2 gap-8 pb-20">
             <article class="card reveal">
-                <div class="h-56 overflow-hidden">
+                <div class="h-64 card-img-container overflow-hidden">
                     <img src="https://i0.wp.com/www.exabytes.com/blog/wp-content/uploads/2019/05/5cd15963d624d.png?resize=696%2C464&ssl=1"
                          alt="Tech and Engineering" loading="lazy"
                          onerror="this.onerror=null;this.src='https://placehold.co/700x400/1a1590/ffffff?text=Tech+Engineering';">
@@ -290,7 +302,7 @@
             </article>
 
             <article class="card reveal">
-                <div class="h-56 overflow-hidden">
+                <div class="h-64 card-img-container overflow-hidden">
                     <img src="images/10.png" alt="YouTube Divulgation" loading="lazy"
                          onerror="this.onerror=null;this.src='https://placehold.co/700x400/1a1590/ffffff?text=YouTube';">
                 </div>
@@ -303,8 +315,7 @@
                 </div>
             </article>
         </section>
-
-
+    </main>
 
     <footer class="site-footer text-center py-8 text-sm font-semibold">
         <p>&copy; 2026 LemonPower21. All rights reserved.</p>
