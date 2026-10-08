@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta name="google-site-verification" content="jcvACEwj18MUZ6IJCdtGKsMSNRjZO0hMXiLYrMtZRFE" />
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7043033351033202" crossorigin="anonymous"></script>
@@ -7,14 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Francesco Vito Giotta (LemonPower21) - Official Website</title>
     <meta name="description" content="Official website of Francesco Vito Giotta (LemonPower21), Computer Engineering student, content creator, and tech enthusiast.">
-    
+    <meta name="theme-color" content="#1a1590">
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Francesco Vito Giotta",
       "alternateName": ["LemonPower21", "LemonPower"],
-      "url": "https://lemonpower21.github.io", 
+      "url": "https://lemonpower21.github.io",
       "image": "https://avatars.githubusercontent.com/u/167875380?v=4",
       "jobTitle": "Computer Engineering Student",
       "birthDate": "2006-08-14",
@@ -28,6 +29,9 @@
     }
     </script>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -37,146 +41,298 @@
                         'primary-blue': 'hwb(243 6% 42%)',
                         'accent-yellow': '#ffd700',
                     },
-                    fontFamily: {
-                        inter: ['Inter', 'sans-serif'],
-                    }
+                    fontFamily: { inter: ['Inter', 'sans-serif'] }
                 }
             }
         }
     </script>
     <style>
+        :root {
+            --blue-900: #120e6b;
+            --blue-800: #1a1590;
+            --blue-700: #2a25c4;
+            --blue-500: #4a5cff;
+            --blue-100: #e6eaff;
+            --blue-50: #f3f5ff;
+            --white: #ffffff;
+            --text: #14143a;
+            --muted: #5b5f86;
+            --border: #dfe3fb;
+        }
+        * { box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
             margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
+            background: var(--blue-50);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
-        header {
-            background-color: hwb(243 6% 42%);
-            color: white;
-            padding: 1em 0;
-            font-weight: bold;
+
+        /* NAV */
+        .site-header {
+            background: rgba(26, 21, 144, 0.92);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255,255,255,.12);
         }
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s ease;
-            font-weight: bold;
+        .nav-link {
+            position: relative;
+            color: rgba(255,255,255,.75);
+            font-weight: 500;
+            font-size: .95rem;
+            transition: color .25s ease;
         }
-        nav ul li a:hover {
-            color: #ffd700;
-            text-decoration: underline;
+        .nav-link:hover, .nav-link.active { color: #fff; }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0; bottom: -6px;
+            height: 2px; width: 0;
+            background: #fff;
+            border-radius: 2px;
+            transition: width .25s ease;
         }
-        main {
-            padding: 20px;
-            max-width: 960px;
-            margin: 20px auto;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+        /* HERO */
+        .hero {
+            position: relative;
+            background:
+                radial-gradient(900px 400px at 85% -10%, rgba(74,92,255,.55), transparent 60%),
+                radial-gradient(700px 400px at 0% 100%, rgba(255,255,255,.10), transparent 60%),
+                linear-gradient(160deg, var(--blue-900) 0%, var(--blue-800) 55%, var(--blue-700) 100%);
+            color: #fff;
+            overflow: hidden;
         }
-        .article-section {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 30px;
-            gap: 20px;
-            padding: 15px;
-            border-bottom: 1px solid #eee;
-            border-radius: 8px;
+        .hero::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+            background-size: 48px 48px;
+            mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+            -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
         }
-        .article-section img {
-            width: 40%;
-            max-width: 350px;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            object-fit: cover;
+        .hero-wave { display: block; width: 100%; height: 70px; margin-bottom: -1px; }
+
+        .badge {
+            display: inline-flex; align-items: center; gap: .5rem;
+            padding: .4rem .9rem;
+            background: rgba(255,255,255,.12);
+            border: 1px solid rgba(255,255,255,.25);
+            border-radius: 999px;
+            font-size: .8rem;
+            color: #fff;
         }
-        h2.section-title {
-            color: hwb(243 6% 42%);
+        .dot { width: 8px; height: 8px; border-radius: 50%; background: #fff; box-shadow: 0 0 10px #fff; }
+
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+            padding: .85rem 1.6rem;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+        }
+        .btn:hover { transform: translateY(-2px); }
+        .btn-white {
+            background: #fff;
+            color: var(--blue-800);
+            box-shadow: 0 12px 30px -12px rgba(0,0,0,.5);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid rgba(255,255,255,.55);
+            color: #fff;
+        }
+        .btn-outline:hover { background: rgba(255,255,255,.12); }
+
+        /* STATS */
+        .stat {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.3rem;
             text-align: center;
-            font-weight: bold;
-            font-size: 2em;
-            margin-bottom: 25px;
+            box-shadow: 0 10px 30px -18px rgba(26,21,144,.35);
+            transition: transform .25s ease;
         }
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: hwb(243 6% 42%);
-            color: white;
-            font-weight: bold;
+        .stat:hover { transform: translateY(-4px); }
+        .stat .value { font-size: 1.5rem; font-weight: 800; color: var(--blue-800); }
+        .stat .label { font-size: .85rem; color: var(--muted); margin-top: .25rem; }
+
+        /* SECTION TITLE */
+        .section-title {
+            font-size: 1.9rem; font-weight: 800; color: var(--blue-800);
+            text-align: center; letter-spacing: -.01em;
         }
-        @media (max-width: 768px) {
-            .article-section {
-                flex-direction: column;
-                align-items: center;
-            }
-            .article-section img {
-                width: 100%;
-            }
+        .section-title::after {
+            content: ''; display: block; width: 56px; height: 4px; margin: 12px auto 0;
+            background: var(--blue-500); border-radius: 4px;
+        }
+
+        /* CARDS */
+        .card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+            box-shadow: 0 10px 30px -20px rgba(26,21,144,.3);
+        }
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: var(--blue-500);
+            box-shadow: 0 25px 50px -25px rgba(26,21,144,.55);
+        }
+        .card img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+        .card:hover img { transform: scale(1.05); }
+        .card h3 { color: var(--blue-800); }
+        .card .tag {
+            display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .06em;
+            text-transform: uppercase; color: var(--blue-700);
+            background: var(--blue-100); padding: .25rem .7rem; border-radius: 999px; margin-bottom: .8rem;
+        }
+
+        /* SOCIAL */
+        .social a {
+            width: 46px; height: 46px;
+            display: inline-flex; align-items: center; justify-content: center;
+            border-radius: 12px;
+            background: #fff;
+            border: 1px solid var(--border);
+            color: var(--blue-800);
+            transition: all .25s ease;
+        }
+        .social a:hover { color: #fff; background: var(--blue-800); border-color: var(--blue-800); transform: translateY(-3px); }
+
+        /* REVEAL */
+        .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+        .reveal.visible { opacity: 1; transform: none; }
+
+        footer.site-footer { background: var(--blue-800); color: rgba(255,255,255,.85); }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal { transition: none; opacity: 1; transform: none; }
         }
     </style>
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 </head>
 <body>
 
-    <header>
-        <nav class="container mx-auto px-4 flex flex-wrap justify-between items-center">
-            <div class="text-xl">LemonPower21</div>
-            <button id="hamburger" class="md:hidden block focus:outline-none" aria-label="Navigation Menu">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <!-- NAV -->
+    <header class="site-header sticky top-0 z-50">
+        <nav class="max-w-6xl mx-auto px-5 py-4 flex flex-wrap items-center justify-between text-white">
+            <a href="index.html" class="text-lg font-extrabold tracking-tight">LemonPower21</a>
+            <button id="hamburger" class="md:hidden p-2 rounded-lg focus:outline-none" aria-label="Navigation Menu" aria-expanded="false">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                 </svg>
             </button>
-            <ul id="nav-links" class="hidden md:flex flex-row space-x-6 w-full md:w-auto mt-4 md:mt-0 text-center md:text-left">
-                <li class="py-3 md:py-0"><a href="index.html" class="block w-full">Home</a></li>
-                <li class="py-3 md:py-0"><a href="aboutme.html" class="block w-full">About Me</a></li>
-                <li class="py-3 md:py-0"><a href="projects.html" class="block w-full">Projects</a></li>
-                <li class="py-3 md:py-0"><a href="contacts.html" class="block w-full">Contacts</a></li>
+            <ul id="nav-links" class="hidden md:flex flex-col md:flex-row w-full md:w-auto gap-1 md:gap-8 mt-4 md:mt-0 text-center md:text-left">
+                <li class="py-2 md:py-0"><a href="index.html" class="nav-link active">Home</a></li>
+                <li class="py-2 md:py-0"><a href="aboutme.html" class="nav-link">About Me</a></li>
+                <li class="py-2 md:py-0"><a href="projects.html" class="nav-link">Projects</a></li>
+                <li class="py-2 md:py-0"><a href="contacts.html" class="nav-link">Contacts</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
-        <h2 class="section-title">Welcome to LemonPower21's Portal</h2>
-        <p style="text-align: center; margin-bottom: 40px; font-size: 1.1em;">Computer Engineering student, developer, and digital content creator exploring the frontiers of technology.</p>
-
-        <div class="article-section flex flex-col md:flex-row items-center md:items-start gap-5 p-4 mb-8 border-b border-gray-200 rounded-lg">
-            <img src="https://i0.wp.com/www.exabytes.com/blog/wp-content/uploads/2019/05/5cd15963d624d.png?resize=696%2C464&ssl=1" 
-                 alt="Tech and Engineering" 
-                 class="w-full md:w-2/5 h-auto rounded-lg shadow-md object-cover"
-                 onerror="this.onerror=null;this.src='https://placehold.co/350x200/cccccc/000000?text=Tech+Engineering';">
-            
-            <div class="text-content mt-4 md:mt-0">
-                <h3 class="text-xl font-bold mb-2 text-[hwb(243_6%_42%)]">
-                    Building the Digital Future
-                </h3>
-                <p class="text-gray-700 leading-relaxed">
-                    Passionate about software architecture, cybersecurity, and emerging technologies. From writing automation scripts in Python to exploring network security standards, my journey is driven by continuous learning and hands-on technical challenges.
-                </p>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="relative max-w-4xl mx-auto px-5 text-center pt-20 pb-24 md:pt-28 md:pb-32">
+            <div class="badge reveal"><span class="dot"></span> Computer Engineering Student</div>
+            <h1 class="reveal mt-6 text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight">
+                Welcome to LemonPower21's Portal
+            </h1>
+            <p class="reveal mt-6 max-w-2xl mx-auto text-lg md:text-xl" style="color:rgba(255,255,255,.82)">
+                Computer Engineering student, developer, and digital content creator exploring the frontiers of technology.
+            </p>
+            <div class="reveal mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="projects.html" class="btn btn-white">
+                    View Projects
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 12h14m-6-6 6 6-6 6"/></svg>
+                </a>
+                <a href="https://www.youtube.com/@LemonPower21" target="_blank" rel="noopener" class="btn btn-outline">Watch on YouTube</a>
             </div>
         </div>
+        <svg class="hero-wave" viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0,40 C240,80 480,0 720,30 C960,60 1200,70 1440,20 L1440,70 L0,70 Z" fill="#f3f5ff"/>
+        </svg>
+    </section>
 
-        <div class="article-section flex flex-col md:flex-row-reverse items-center md:items-start gap-5 p-4 mb-8 border-b border-gray-200 rounded-lg">
-            <img src="images/10.png" alt="YouTube Divulgation" 
-                 class="w-full md:w-2/5 h-auto rounded-lg shadow-md object-cover"
-                 onerror="this.onerror=null;this.src='https://placehold.co/350x200/cccccc/000000?text=YouTube';">
-            
-            <div class="text-content mt-4 md:mt-0">
-                <h3 class="text-xl font-bold mb-2 text-[hwb(243_6%_42%)]">
-                    Divulgation and Content Creation
-                </h3>
-                <p class="text-gray-700 leading-relaxed">
-                    Since 2025, I have been sharing my knowledge and experiences through YouTube. I strongly believe that sharing technological expertise is the best way to support others who want to embark on similar learning paths.
-                </p>
+    <main class="max-w-6xl mx-auto px-5">
+
+        <!-- STATS -->
+        <section class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 pb-20 reveal">
+            <div class="stat"><div class="value">Python</div><div class="label">Automation</div></div>
+            <div class="stat"><div class="value">Security</div><div class="label">Networks &amp; Cyber</div></div>
+            <div class="stat"><div class="value">Software</div><div class="label">Architecture</div></div>
+            <div class="stat"><div class="value">2025</div><div class="label">On YouTube</div></div>
+        </section>
+
+        <!-- CARDS -->
+        <h2 class="section-title reveal mb-12">What I Do</h2>
+        <section class="grid md:grid-cols-2 gap-8 pb-20">
+            <article class="card reveal">
+                <div class="h-56 overflow-hidden">
+                    <img src="https://i0.wp.com/www.exabytes.com/blog/wp-content/uploads/2019/05/5cd15963d624d.png?resize=696%2C464&ssl=1"
+                         alt="Tech and Engineering" loading="lazy"
+                         onerror="this.onerror=null;this.src='https://placehold.co/700x400/1a1590/ffffff?text=Tech+Engineering';">
+                </div>
+                <div class="p-7">
+                    <span class="tag">Engineering</span>
+                    <h3 class="text-2xl font-bold mb-3">Building the Digital Future</h3>
+                    <p class="leading-relaxed" style="color:var(--muted)">
+                        Passionate about software architecture, cybersecurity, and emerging technologies. From writing automation scripts in Python to exploring network security standards, my journey is driven by continuous learning and hands-on technical challenges.
+                    </p>
+                </div>
+            </article>
+
+            <article class="card reveal">
+                <div class="h-56 overflow-hidden">
+                    <img src="images/10.png" alt="YouTube Divulgation" loading="lazy"
+                         onerror="this.onerror=null;this.src='https://placehold.co/700x400/1a1590/ffffff?text=YouTube';">
+                </div>
+                <div class="p-7">
+                    <span class="tag">Content</span>
+                    <h3 class="text-2xl font-bold mb-3">Divulgation and Content Creation</h3>
+                    <p class="leading-relaxed" style="color:var(--muted)">
+                        Since 2025, I have been sharing my knowledge and experiences through YouTube. I strongly believe that sharing technological expertise is the best way to support others who want to embark on similar learning paths.
+                    </p>
+                </div>
+            </article>
+        </section>
+
+        <!-- SOCIAL -->
+        <section class="text-center pb-16 reveal">
+            <h2 class="section-title mb-8">Find Me Online</h2>
+            <div class="social flex flex-wrap justify-center gap-3">
+                <a href="https://github.com/LemonPower21" target="_blank" rel="noopener" aria-label="GitHub">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+                </a>
+                <a href="https://www.linkedin.com/in/giotta-francescovito/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+                </a>
+                <a href="https://www.youtube.com/@LemonPower21" target="_blank" rel="noopener" aria-label="YouTube">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg>
+                </a>
+                <a href="https://www.instagram.com/lemon_power21/" target="_blank" rel="noopener" aria-label="Instagram">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+                </a>
+                <a href="https://www.tiktok.com/@lemonpower21x" target="_blank" rel="noopener" aria-label="TikTok">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.6 6.7a5.4 5.4 0 0 1-3.3-1.1A5.4 5.4 0 0 1 14.2 2h-3.4v13.4a2.9 2.9 0 1 1-2-2.8V9.1a6.3 6.3 0 1 0 5.4 6.2V9.1a8.8 8.8 0 0 0 5.4 1.8V7.5z"/></svg>
+                </a>
             </div>
-        </div>
-        
-        <p align="center"><a href="https://info.flagcounter.com/Tvwu"><img src="https://s01.flagcounter.com/count2/Tvwu/bg_FFFFFF/txt_000000/border_CCCCCC/columns_8/maxflags_250/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" border="0"></a></p>
+        </section>
+
+        <p class="text-center pb-10">
+            <a href="https://info.flagcounter.com/Tvwu"><img class="inline-block rounded-lg" src="https://s01.flagcounter.com/count2/Tvwu/bg_FFFFFF/txt_000000/border_CCCCCC/columns_8/maxflags_250/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" border="0"></a>
+        </p>
     </main>
 
-    <footer>
+    <footer class="site-footer text-center py-8 text-sm font-semibold">
         <p>&copy; 2026 LemonPower21. All rights reserved.</p>
     </footer>
 
@@ -184,10 +340,17 @@
         const btn = document.getElementById('hamburger');
         const menu = document.getElementById('nav-links');
         btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-            menu.classList.toggle('flex');
-            menu.classList.toggle('flex-col');
+            const open = menu.classList.toggle('hidden') === false;
+            menu.classList.toggle('flex', open);
+            btn.setAttribute('aria-expanded', open);
         });
+
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+            });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
     </script>
 </body>
 </html>

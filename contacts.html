@@ -1,157 +1,205 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7043033351033202" crossorigin="anonymous"></script>
     <title>Contacts - LemonPower21</title>
+    <meta name="theme-color" content="#1a1590">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: {
-                        'primary-blue': 'hwb(243 6% 42%)',
-                    }
+                    colors: { 'primary-blue': 'hwb(243 6% 42%)' },
+                    fontFamily: { inter: ['Inter', 'sans-serif'] }
                 }
             }
         }
     </script>
-
     <style>
+        :root {
+            --blue-900: #120e6b;
+            --blue-800: #1a1590;
+            --blue-700: #2a25c4;
+            --blue-500: #4a5cff;
+            --blue-100: #e6eaff;
+            --blue-50: #f3f5ff;
+            --text: #14143a;
+            --muted: #5b5f86;
+            --border: #dfe3fb;
+        }
+        * { box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
             margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-            padding-bottom: 70px;
-        }
-        header {
-            background-color: hwb(243 6% 42%);
-            color: white;
-            padding: 1em 0;
-            font-weight: bold;
-        }
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s ease;
-            font-weight: bold;
-        }
-        nav ul li a:hover {
-            color: #ffd700;
-            text-decoration: underline;
-        }
-        main {
-            padding: 40px 20px;
-            max-width: 960px;
-            margin: 20px auto;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            min-height: 300px;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            background: var(--blue-50);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
-        h2.section-title {
-            color: hwb(243 6% 42%);
-            margin-bottom: 30px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 2.2em;
+        main { flex: 1; }
+
+        .site-header {
+            background: rgba(26, 21, 144, 0.92);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255,255,255,.12);
         }
-        .social-logos {
+        .nav-link {
+            position: relative;
+            color: rgba(255,255,255,.75);
+            font-weight: 500;
+            font-size: .95rem;
+            transition: color .25s ease;
+        }
+        .nav-link:hover, .nav-link.active { color: #fff; }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0; bottom: -6px;
+            height: 2px; width: 0;
+            background: #fff;
+            border-radius: 2px;
+            transition: width .25s ease;
+        }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+        .page-hero {
+            position: relative;
+            background:
+                radial-gradient(900px 400px at 85% -10%, rgba(74,92,255,.55), transparent 60%),
+                linear-gradient(160deg, var(--blue-900) 0%, var(--blue-800) 55%, var(--blue-700) 100%);
+            color: #fff;
+            overflow: hidden;
+        }
+        .page-hero::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+            background-size: 48px 48px;
+            mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+            -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+        }
+        .hero-wave { display: block; width: 100%; height: 60px; margin-bottom: -1px; }
+
+        .contact-card {
             display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 30px;
+            flex-direction: column;
+            align-items: center;
+            gap: .9rem;
+            padding: 1.8rem 1rem;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px -20px rgba(26,21,144,.3);
+            transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
         }
-        .social-logos a {
-            display: block;
-            width: 70px;
-            height: 70px;
+        .contact-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--blue-500);
+            box-shadow: 0 25px 50px -25px rgba(26,21,144,.55);
+        }
+        .contact-card .icon {
+            width: 72px; height: 72px;
             border-radius: 50%;
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 6px 16px rgba(26,21,144,.25);
+            border: 3px solid var(--blue-100);
+            transition: transform .3s ease;
         }
-        .social-logos a:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25);
-        }
-        .social-logos img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: hwb(243 6% 42%);
-            color: white;
-            font-weight: bold;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-        @media (max-width: 768px) {
-            .social-logos { gap: 20px; }
-            .social-logos a { width: 60px; height: 60px; }
-            h2.section-title { font-size: 1.8em; }
-            footer { position: relative; }
-            body { padding-bottom: 0; }
+        .contact-card:hover .icon { transform: scale(1.08); }
+        .contact-card .icon img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .contact-card .name { font-weight: 700; color: var(--blue-800); }
+        .contact-card .hint { font-size: .8rem; color: var(--muted); margin-top: -.5rem; }
+
+        .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+        .reveal.visible { opacity: 1; transform: none; }
+
+        footer.site-footer { background: var(--blue-800); color: rgba(255,255,255,.85); }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal { transition: none; opacity: 1; transform: none; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <nav class="container mx-auto px-4 flex flex-wrap justify-between items-center">
-            <div class="text-xl">LemonPower21</div>
-            <button id="hamburger" class="md:hidden block focus:outline-none" aria-label="Navigation Menu">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <header class="site-header sticky top-0 z-50">
+        <nav class="max-w-6xl mx-auto px-5 py-4 flex flex-wrap items-center justify-between text-white">
+            <a href="index.html" class="text-lg font-extrabold tracking-tight">LemonPower21</a>
+            <button id="hamburger" class="md:hidden p-2 rounded-lg focus:outline-none" aria-label="Navigation Menu" aria-expanded="false">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                 </svg>
             </button>
-            <ul id="nav-links" class="hidden md:flex flex-row space-x-6 w-full md:w-auto mt-4 md:mt-0 text-center md:text-left">
-                <li class="py-3 md:py-0"><a href="index.html" class="block w-full">Home</a></li>
-                <li class="py-3 md:py-0"><a href="aboutme.html" class="block w-full">About Me</a></li>
-                <li class="py-3 md:py-0"><a href="projects.html" class="block w-full">Projects</a></li>
-                <li class="py-3 md:py-0"><a href="contacts.html" class="block w-full">Contacts</a></li>
+            <ul id="nav-links" class="hidden md:flex flex-col md:flex-row w-full md:w-auto gap-1 md:gap-8 mt-4 md:mt-0 text-center md:text-left">
+                <li class="py-2 md:py-0"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="py-2 md:py-0"><a href="aboutme.html" class="nav-link">About Me</a></li>
+                <li class="py-2 md:py-0"><a href="projects.html" class="nav-link">Projects</a></li>
+                <li class="py-2 md:py-0"><a href="contacts.html" class="nav-link active">Contacts</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
-        <h2 class="section-title">Get in Touch</h2>
-        <div class="social-logos">
-            <a href="https://www.linkedin.com/in/francesco-vito-giotta-969938314/" target="_blank" rel="noopener" aria-label="LinkedIn">
-                <img src="images/1.png" alt="LinkedIn" onerror="this.src='https://placehold.co/70x70?text=In'">
+    <section class="page-hero">
+        <div class="relative max-w-4xl mx-auto px-5 text-center pt-16 pb-20 md:pt-20 md:pb-24">
+            <h1 class="reveal text-4xl md:text-5xl font-extrabold tracking-tight">Get in Touch</h1>
+            <p class="reveal mt-4 max-w-2xl mx-auto text-lg" style="color:rgba(255,255,255,.82)">
+                Find me on social media or send me an email.
+            </p>
+        </div>
+        <svg class="hero-wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0,30 C240,70 480,0 720,25 C960,50 1200,60 1440,15 L1440,60 L0,60 Z" fill="#f3f5ff"/>
+        </svg>
+    </section>
+
+    <main class="max-w-4xl w-full mx-auto px-5 pt-6 pb-20">
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-5">
+            <a class="contact-card reveal" href="https://www.linkedin.com/in/francesco-vito-giotta-969938314/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <span class="icon"><img src="images/1.png" alt="LinkedIn" onerror="this.onerror=null;this.src='https://placehold.co/72x72/1a1590/ffffff?text=In'"></span>
+                <span class="name">LinkedIn</span>
+                <span class="hint">Professional profile</span>
             </a>
-            <a href="https://github.com/LemonPower21/LemonPower21" target="_blank" rel="noopener" aria-label="GitHub">
-                <img src="images/3.png" alt="GitHub" onerror="this.src='https://placehold.co/70x70?text=Git'">
+            <a class="contact-card reveal" href="https://github.com/LemonPower21/LemonPower21" target="_blank" rel="noopener" aria-label="GitHub">
+                <span class="icon"><img src="images/3.png" alt="GitHub" onerror="this.onerror=null;this.src='https://placehold.co/72x72/1a1590/ffffff?text=Git'"></span>
+                <span class="name">GitHub</span>
+                <span class="hint">Code &amp; scripts</span>
             </a>
-            <a href="https://www.youtube.com/@LemonPower21" target="_blank" rel="noopener" aria-label="YouTube">
-                <img src="images/4.png" alt="YouTube" onerror="this.src='https://placehold.co/70x70?text=YT'">
+            <a class="contact-card reveal" href="https://www.youtube.com/@LemonPower21" target="_blank" rel="noopener" aria-label="YouTube">
+                <span class="icon"><img src="images/4.png" alt="YouTube" onerror="this.onerror=null;this.src='https://placehold.co/72x72/1a1590/ffffff?text=YT'"></span>
+                <span class="name">YouTube</span>
+                <span class="hint">Tutorials &amp; guides</span>
             </a>
-            <a href="https://www.instagram.com/lemon_power21/" target="_blank" rel="noopener" aria-label="Instagram">
-                <img src="images/2.png" alt="Instagram" onerror="this.src='https://placehold.co/70x70?text=IG'">
+            <a class="contact-card reveal" href="https://www.instagram.com/lemon_power21/" target="_blank" rel="noopener" aria-label="Instagram">
+                <span class="icon"><img src="images/2.png" alt="Instagram" onerror="this.onerror=null;this.src='https://placehold.co/72x72/1a1590/ffffff?text=IG'"></span>
+                <span class="name">Instagram</span>
+                <span class="hint">@lemon_power21</span>
             </a>
-            <a href="https://www.tiktok.com/@lemonpower21x" target="_blank" rel="noopener" aria-label="TikTok">
-                <img src="images/t.png" alt="TikTok" onerror="this.src='https://placehold.co/70x70?text=TikTok'">
+            <a class="contact-card reveal" href="https://www.tiktok.com/@lemonpower21x" target="_blank" rel="noopener" aria-label="TikTok">
+                <span class="icon"><img src="images/t.png" alt="TikTok" onerror="this.onerror=null;this.src='https://placehold.co/72x72/1a1590/ffffff?text=TikTok'"></span>
+                <span class="name">TikTok</span>
+                <span class="hint">@lemonpower21x</span>
             </a>
-            <a href="mailto:giotta.francescovitosp@gmail.com" aria-label="Email">
-                <img src="images/5.png" alt="Email" onerror="this.src='https://placehold.co/70x70?text=@'">
+            <a class="contact-card reveal" href="mailto:giotta.francescovitosp@gmail.com" aria-label="Email">
+                <span class="icon"><img src="images/5.png" alt="Email" onerror="this.onerror=null;this.src='https://placehold.co/72x72/1a1590/ffffff?text=@'"></span>
+                <span class="name">Email</span>
+                <span class="hint">Write me directly</span>
             </a>
         </div>
     </main>
 
-    <footer>
+    <footer class="site-footer text-center py-8 text-sm font-semibold">
         <p>&copy; 2026 LemonPower21. All rights reserved.</p>
     </footer>
 
@@ -159,10 +207,17 @@
         const btn = document.getElementById('hamburger');
         const menu = document.getElementById('nav-links');
         btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-            menu.classList.toggle('flex');
-            menu.classList.toggle('flex-col');
+            const open = menu.classList.toggle('hidden') === false;
+            menu.classList.toggle('flex', open);
+            btn.setAttribute('aria-expanded', open);
         });
+
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+            });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
     </script>
 </body>
 </html>
