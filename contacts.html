@@ -191,11 +191,24 @@
                 <span class="name">TikTok</span>
                 <span class="hint">@lemon.power21</span>
             </a>
-            <a class="contact-card reveal" href="mailto:giotta.francescovitosp@gmail.com" aria-label="Email">
+            <a class="contact-card reveal" href="mailto:giotta.francescovitosp@gmail.com" id="email-card" aria-label="Email">
                 <span class="icon"><img src="images/5.png" alt="Email" onerror="this.onerror=null;this.src='https://placehold.co/72x72/1a1590/ffffff?text=@'"></span>
                 <span class="name">Email</span>
-                <span class="hint">giotta.francescovitosp@gmail.com</span>
+                <span class="hint" id="email-hint">giotta.francescovitosp@gmail.com</span>
             </a>
+
+<script>
+    document.getElementById('email-card').addEventListener('click', (e) => {
+        // Copia l'indirizzo email negli appunti
+        navigator.clipboard.writeText('giotta.francescovitosp@gmail.com');
+        
+        // Feedback visivo temporaneo
+        const hint = document.getElementById('email-hint');
+        const oldText = hint.innerText;
+        hint.innerText = 'Copied!';
+        setTimeout(() => { hint.innerText = oldText; }, 2000);
+    });
+</script>
         </div>
     </main>
 
