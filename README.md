@@ -18,10 +18,6 @@ The pages included in this project are:
 
 * **`leetcode.html`**: A page that redirect to Google Account.
 
-* **`treemap.html`**: A map of available trees.
-
-* **`worldvertiser.html`**: A page about my old project based on workflow.
-
 * **`404.html`**: A custom error page for broken or missing links.
 
 * **`images/`**: A directory containing visual assets and media for the site.
