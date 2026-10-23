@@ -1,132 +1,209 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta name="google-site-verification" content="jcvACEwj18MUZ6IJCdtGKsMSNRjZO0hMXiLYrMtZRFE" />
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7043033351033202" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 - Page Not Found</title>
+    <meta name="theme-color" content="#1a1590">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: {
-                        'primary-blue': 'hwb(243 6% 42%)',
-                        'accent-yellow': '#ffd700',
-                    },
-                    fontFamily: {
-                        inter: ['Inter', 'sans-serif'],
-                    }
+                    colors: { 'primary-blue': 'hwb(243 6% 42%)' },
+                    fontFamily: { inter: ['Inter', 'sans-serif'] }
                 }
             }
         }
     </script>
     <style>
+        :root {
+            --blue-900: #120e6b;
+            --blue-800: #1a1590;
+            --blue-700: #2a25c4;
+            --blue-500: #4a5cff;
+            --blue-100: #e6eaff;
+            --blue-50: #f3f5ff;
+            --text: #14143a;
+            --muted: #5b5f86;
+            --border: #dfe3fb;
+        }
+        * { box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
             margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: var(--blue-50);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        main { flex: 1; }
+
+        .site-header {
+            background: rgba(26, 21, 144, 0.92);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255,255,255,.12);
+        }
+        .nav-link {
+            position: relative;
+            color: rgba(255,255,255,.75);
+            font-weight: 500;
+            font-size: .95rem;
+            transition: color .25s ease;
+        }
+        .nav-link:hover, .nav-link.active { color: #fff; }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0; bottom: -6px;
+            height: 2px; width: 0;
+            background: #fff;
+            border-radius: 2px;
+            transition: width .25s ease;
+        }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+        .page-hero {
+            position: relative;
+            background:
+                radial-gradient(900px 400px at 85% -10%, rgba(74,92,255,.55), transparent 60%),
+                linear-gradient(160deg, var(--blue-900) 0%, var(--blue-800) 55%, var(--blue-700) 100%);
+            color: #fff;
+            overflow: hidden;
+        }
+        .page-hero::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+            background-size: 48px 48px;
+            mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+            -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+        }
+        .hero-wave { display: block; width: 100%; height: 60px; margin-bottom: -1px; }
+
+        .error-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px -20px rgba(26,21,144,.3);
+            padding: 3rem 2rem;
+            text-align: center;
         }
 
-        header {
-            background-color: hwb(243 6% 42%);
-            color: white;
-            padding: 1em 0;
-            font-weight: bold;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s ease;
-            font-weight: bold;
-        }
-
-        nav ul li a:hover {
-            color: #ffd700;
-            text-decoration: underline;
-        }
-
-        main {
-            padding: 40px 20px;
-            max-width: 700px;
-            margin: 60px auto;
-            background-color: white;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+        .btn-primary {
+            background-color: var(--blue-800);
+            color: #ffffff;
+            font-weight: 600;
+            padding: 0.8rem 2rem;
             border-radius: 12px;
-            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 14px rgba(26, 21, 144, 0.25);
+            transition: background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .btn-primary:hover {
+            background-color: var(--blue-700);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(26, 21, 144, 0.35);
         }
 
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: hwb(243 6% 42%);
-            color: white;
-            font-weight: bold;
+        .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+        .reveal.visible { opacity: 1; transform: none; }
+
+        footer.site-footer { background: var(--blue-800); color: rgba(255,255,255,.85); }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal { transition: none; opacity: 1; transform: none; }
         }
     </style>
-    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 </head>
 <body>
 
     <!-- HEADER -->
-    <header>
-        <nav class="container mx-auto px-4 flex flex-wrap justify-between items-center">
-            <div class="text-xl">LemonPower21</div>
-
-            <button id="hamburger" class="md:hidden block focus:outline-none" aria-label="Navigation Menu">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <header class="site-header sticky top-0 z-50">
+        <nav class="max-w-6xl mx-auto px-5 py-4 flex flex-wrap items-center justify-between text-white">
+            <a href="index.html" class="text-lg font-extrabold tracking-tight">LemonPower21</a>
+            <button id="hamburger" class="md:hidden p-2 rounded-lg focus:outline-none" aria-label="Navigation Menu" aria-expanded="false">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                 </svg>
             </button>
-
-            <ul id="nav-links" class="hidden md:flex flex-row space-x-6 w-full md:w-auto mt-4 md:mt-0 text-center md:text-left">
-                <li class="py-3 md:py-0"><a href="index.html" class="block w-full">Home</a></li>
-                <li class="py-3 md:py-0"><a href="aboutme.html" class="block w-full">About Me</a></li>
-                <li class="py-3 md:py-0"><a href="projects.html" class="block w-full">Projects</a></li>
-                <li class="py-3 md:py-0"><a href="contacts.html" class="block w-full">Contacts</a></li>
+            <ul id="nav-links" class="hidden md:flex flex-col md:flex-row w-full md:w-auto gap-1 md:gap-8 mt-4 md:mt-0 text-center md:text-left">
+                <li class="py-2 md:py-0"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="py-2 md:py-0"><a href="aboutme.html" class="nav-link">About me</a></li>
+                <li class="py-2 md:py-0"><a href="projects.html" class="nav-link">Projects</a></li>
+                <li class="py-2 md:py-0"><a href="contacts.html" class="nav-link">Contacts</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- 404 CONTENT -->
-    <main class="flex flex-col items-center justify-center min-h-[40vh]">
-        <div class="text-6xl md:text-8xl font-black text-[hwb(243_6%_42%)] mb-4">404</div>
-        <h2 class="text-2xl md:text-3xl font-bold mb-4 text-gray-800">Ops! Page not found</h2>
-        <p class="text-gray-600 mb-8 max-w-md mx-auto">
-            The page you're searching for is unavailable or has been permanently moved.
-        </p>
-        
-        <!-- BOTTONE PER TORNARE IN HOME -->
-        <a href="index.html" class="inline-block bg-[hwb(243_6%_42%)] hover:bg-opacity-90 text-white font-bold px-8 py-3 rounded-lg shadow-md transition transform hover:-translate-y-0.5">
-            ← Go Back Home
-        </a>
+    <!-- HERO SECTION -->
+    <section class="page-hero">
+        <div class="relative max-w-4xl mx-auto px-5 text-center pt-16 pb-20 md:pt-20 md:pb-24">
+            <h1 class="reveal text-6xl md:text-8xl font-extrabold tracking-tight">404</h1>
+            <p class="reveal mt-4 max-w-2xl mx-auto text-xl font-medium" style="color:rgba(255,255,255,.88)">
+                Page Not Found
+            </p>
+        </div>
+        <svg class="hero-wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0,30 C240,70 480,0 720,25 C960,50 1200,60 1440,15 L1440,60 L0,60 Z" fill="#f3f5ff"/>
+        </svg>
+    </section>
 
-        <!-- Flag Counter originale -->
-        <div class="mt-12">
-            <a href="https://info.flagcounter.com/Tvwu"><img src="https://s01.flagcounter.com/count2/Tvwu/bg_FFFFFF/txt_000000/border_CCCCCC/columns_8/maxflags_250/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" border="0"></a>
+    <!-- MAIN CONTENT -->
+    <main class="max-w-2xl w-full mx-auto px-5 pt-4 pb-20">
+        <div class="error-card reveal">
+            <h2 class="text-2xl md:text-3xl font-bold mb-3" style="color: var(--blue-900);">Ops! Page not found</h2>
+            <p class="mb-8" style="color: var(--muted);">
+                The page you're searching for is unavailable or has been permanently moved.
+            </p>
+            
+            <a href="index.html" class="btn-primary">
+                &larr; Go Back Home
+            </a>
+
+            <!-- Flag Counter -->
+            <div class="mt-12 flex justify-center">
+                <a href="https://info.flagcounter.com/Tvwu"><img src="https://s01.flagcounter.com/count2/Tvwu/bg_FFFFFF/txt_000000/border_CCCCCC/columns_8/maxflags_250/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" border="0"></a>
+            </div>
         </div>
     </main>
 
     <!-- FOOTER -->
-    <footer>
+    <footer class="site-footer text-center py-8 text-sm font-semibold">
         <p>&copy; 2026 LemonPower21. All rights reserved.</p>
     </footer>
 
-    <!-- SCRIPT HAMBURGER MENU -->
+    <!-- JS -->
     <script>
         const btn = document.getElementById('hamburger');
         const menu = document.getElementById('nav-links');
-
         btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-            menu.classList.toggle('flex');
-            menu.classList.toggle('flex-col'); 
+            const open = menu.classList.toggle('hidden') === false;
+            menu.classList.toggle('flex', open);
+            btn.setAttribute('aria-expanded', open);
         });
-    </script>
 
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+            });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    </script>
 </body>
 </html>
