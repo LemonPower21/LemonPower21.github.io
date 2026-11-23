@@ -34,7 +34,7 @@
             --muted: #5b5f86;
             --border: #dfe3fb;
         }
-        * { box-sizing: border-box; }
+        *, *::before, *::after { box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
             margin: 0;
@@ -164,8 +164,8 @@
         </svg>
     </section>
 
-    <main class="max-w-4xl w-full mx-auto px-5 pt-6 pb-20">
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-5">
+    <main class="max-w-2xl w-full mx-auto px-5 pt-6 pb-20">
+        <div class="grid grid-cols-2 gap-5">
             <a class="contact-card reveal" href="https://www.linkedin.com/in/francesco-vito-giotta-969938314/" target="_blank" rel="noopener" aria-label="LinkedIn">
                 <span class="icon"><img src="images/1.png" alt="LinkedIn" onerror="this.onerror=null;this.src='https://placehold.co/72x72/1a1590/ffffff?text=In'"></span>
                 <span class="name">LinkedIn</span>
@@ -181,35 +181,23 @@
                 <span class="name">YouTube</span>
                 <span class="hint">Tutorials &amp; guides</span>
             </a>
-            <a class="contact-card reveal" href="https://www.instagram.com/lemon.power21/" target="_blank" rel="noopener" aria-label="Instagram">
-                <span class="icon"><img src="images/2.png" alt="Instagram" onerror="this.onerror=null;this.src='https://placehold.co/72x72/1a1590/ffffff?text=IG'"></span>
-                <span class="name">Instagram</span>
-                <span class="hint">@lemon.power21</span>
-            </a>
-            <a class="contact-card reveal" href="https://www.tiktok.com/@lemon.power21" target="_blank" rel="noopener" aria-label="TikTok">
-                <span class="icon"><img src="images/t.png" alt="TikTok" onerror="this.onerror=null;this.src='https://placehold.co/72x72/1a1590/ffffff?text=TikTok'"></span>
-                <span class="name">TikTok</span>
-                <span class="hint">@lemon.power21</span>
-            </a>
             <a class="contact-card reveal" href="mailto:giotta.francescovitosp@gmail.com" id="email-card" aria-label="Email">
                 <span class="icon"><img src="images/5.png" alt="Email" onerror="this.onerror=null;this.src='https://placehold.co/72x72/1a1590/ffffff?text=@'"></span>
                 <span class="name">Email</span>
                 <span class="hint" id="email-hint">giotta.francescovitosp@gmail.com</span>
             </a>
-
-<script>
-    document.getElementById('email-card').addEventListener('click', (e) => {
-        // Copia l'indirizzo email negli appunti
-        navigator.clipboard.writeText('giotta.francescovitosp@gmail.com');
-        
-        // Feedback visivo temporaneo
-        const hint = document.getElementById('email-hint');
-        const oldText = hint.innerText;
-        hint.innerText = 'Copied!';
-        setTimeout(() => { hint.innerText = oldText; }, 2000);
-    });
-</script>
         </div>
+
+        <script>
+            document.getElementById('email-card').addEventListener('click', () => {
+                navigator.clipboard.writeText('giotta.francescovitosp@gmail.com');
+
+                const hint = document.getElementById('email-hint');
+                const oldText = hint.innerText;
+                hint.innerText = 'Copied!';
+                setTimeout(() => { hint.innerText = oldText; }, 2000);
+            });
+        </script>
     </main>
 
     <footer class="site-footer text-center py-8 text-sm font-semibold">
