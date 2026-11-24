@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog — LemonPower21</title>
+    <meta name="theme-color" content="#1a1590">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-blue': 'hwb(243 6% 42%)',
+                        'accent-yellow': '#ffd700',
+                    },
+                    fontFamily: { inter: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --blue-900: #120e6b;
+            --blue-800: #1a1590;
+            --blue-700: #2a25c4;
+            --blue-500: #4a5cff;
+            --blue-100: #e6eaff;
+            --blue-50: #f3f5ff;
+            --text: #14143a;
+            --muted: #5b5f86;
+            --border: #dfe3fb;
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            background: var(--blue-50);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* Header & Nav */
+        .site-header {
+            background: rgba(26, 21, 144, 0.92);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255,255,255,.12);
+        }
+        .nav-link {
+            position: relative;
+            color: rgba(255,255,255,.75);
+            font-weight: 500;
+            font-size: .95rem;
+            transition: color .25s ease;
+        }
+        .nav-link:hover, .nav-link.active { color: #fff; }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0; bottom: -6px;
+            height: 2px; width: 0;
+            background: #fff;
+            border-radius: 2px;
+            transition: width .25s ease;
+        }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+        /* Hero */
+        .page-hero {
+            position: relative;
+            background:
+                radial-gradient(900px 400px at 85% -10%, rgba(74,92,255,.55), transparent 60%),
+                linear-gradient(160deg, var(--blue-900) 0%, var(--blue-800) 55%, var(--blue-700) 100%);
+            color: #fff;
+            overflow: hidden;
+        }
+        .page-hero::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+            background-size: 48px 48px;
+            mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+            -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+        }
+        .hero-wave { display: block; width: 100%; height: 60px; margin-bottom: -1px; }
+
+        .badge {
+            display: inline-flex; align-items: center; gap: .5rem;
+            padding: .4rem .9rem;
+            background: rgba(255,255,255,.12);
+            border: 1px solid rgba(255,255,255,.25);
+            border-radius: 999px;
+            font-size: .8rem;
+            color: #fff;
+        }
+
+        /* Search */
+        .search-input {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: .55rem 1.1rem .55rem 2.5rem;
+            font-size: .9rem;
+            color: var(--text);
+            outline: none;
+            transition: border-color .2s ease, box-shadow .2s ease;
+        }
+        .search-input:focus {
+            border-color: var(--blue-500);
+            box-shadow: 0 0 0 4px var(--blue-100);
+        }
+
+        /* Blog Cards */
+        .blog-card {
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px -20px rgba(26,21,144,.3);
+            transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+        }
+        .blog-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--blue-500);
+            box-shadow: 0 25px 50px -25px rgba(26,21,144,.55);
+        }
+        .tag {
+            display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .06em;
+            text-transform: uppercase; color: var(--blue-700);
+            background: var(--blue-100); padding: .25rem .7rem; border-radius: 999px;
+        }
+
+        .read-more {
+            display: inline-flex; align-items: center; gap: .4rem;
+            color: var(--blue-700);
+            font-weight: 700;
+            font-size: .92rem;
+            transition: gap .2s ease, color .2s ease;
+            cursor: pointer;
+        }
+        .blog-card:hover .read-more {
+            color: var(--blue-500);
+            gap: .65rem;
+        }
+
+        /* Article Modal */
+        .modal-backdrop {
+            background: rgba(18, 14, 107, 0.65);
+            backdrop-filter: blur(6px);
+        }
+        .article-body p { color: var(--muted); line-height: 1.8; margin-bottom: 1.1rem; font-size: 1.03rem; }
+        .article-body h4 { color: var(--blue-800); font-weight: 700; font-size: 1.2rem; margin: 1.5rem 0 .6rem; }
+        .article-body code {
+            background: var(--blue-100); color: var(--blue-800);
+            padding: .15rem .45rem; border-radius: 6px; font-size: .9em;
+        }
+        .article-body pre {
+            background: var(--blue-900); color: #e6eaff;
+            padding: 1rem 1.25rem; border-radius: 14px; overflow-x: auto;
+            font-size: .88rem; line-height: 1.6; margin: 1rem 0;
+        }
+
+        .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+        .reveal.visible { opacity: 1; transform: none; }
+
+        footer.site-footer { background: var(--blue-800); color: rgba(255,255,255,.85); }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal { transition: none; opacity: 1; transform: none; }
+        }
+    </style>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+</head>
+<body>
+
+    <header class="site-header sticky top-0 z-50">
+        <nav class="max-w-6xl mx-auto px-5 py-4 flex flex-wrap items-center justify-between text-white">
+            <a href="index.html" class="text-lg font-extrabold tracking-tight">LemonPower21</a>
+            <button id="hamburger" class="md:hidden p-2 rounded-lg focus:outline-none" aria-label="Navigation Menu" aria-expanded="false">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+            <ul id="nav-links" class="hidden md:flex flex-col md:flex-row w-full md:w-auto gap-1 md:gap-8 mt-4 md:mt-0 text-center md:text-left">
+                <li class="py-2 md:py-0"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="py-2 md:py-0"><a href="aboutme.html" class="nav-link">About me</a></li>
+                <li class="py-2 md:py-0"><a href="projects.html" class="nav-link">Projects</a></li>
+                <li class="py-2 md:py-0"><a href="blog.html" class="nav-link active">Blog</a></li>
+                <li class="py-2 md:py-0"><a href="contacts.html" class="nav-link">Contacts</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="page-hero">
+        <div class="relative max-w-4xl mx-auto px-5 text-center pt-16 pb-20 md:pt-20 md:pb-24">
+            <h1 class="reveal mt-5 text-4xl md:text-5xl font-extrabold tracking-tight">Blog</h1>
+            <p class="reveal mt-4 max-w-2xl mx-auto text-lg" style="color:rgba(255,255,255,.82)">
+                Articles, deep dives, and field notes across Technology, Finance, and Nature.
+            </p>
+        </div>
+        <svg class="hero-wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0,30 C240,70 480,0 720,25 C960,50 1200,60 1440,15 L1440,60 L0,60 Z" fill="#f3f5ff"/>
+        </svg>
+    </section>
+
+    <main class="max-w-5xl mx-auto px-5 pt-4 pb-20">
+
+        <!-- Search Bar -->
+        <div class="reveal flex flex-col md:flex-row md:items-center md:justify-end gap-4 mb-10">
+            <div class="relative">
+                <svg class="w-4 h-4 absolute left-4 top-1/2 -translate-y-1/2 text-[#5b5f86]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"></path>
+                </svg>
+                <input type="search" id="search-input" class="search-input w-full md:w-64" placeholder="Search articles...">
+            </div>
+        </div>
+
+        <!-- Cards are generated from the `articles` list in the script at the bottom of this file -->
+        <div id="featured-slot"></div>
+        <div id="posts-grid" class="grid grid-cols-1 gap-8"></div>
+
+        <!-- Empty Search State -->
+        <div id="empty-state" class="hidden text-center py-16 bg-white rounded-3xl border border-[#dfe3fb] mt-6">
+            <p class="text-lg font-bold text-[#1a1590]">No articles found</p>
+            <p class="text-sm text-[#5b5f86] mt-1">Try a different search term.</p>
+        </div>
+
+    </main>
+
+    <!-- Reader Modal -->
+    <div id="article-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-backdrop" role="dialog" aria-modal="true">
+        <div class="bg-white border border-[#dfe3fb] rounded-3xl max-w-2xl w-full max-h-[85vh] overflow-y-auto p-7 md:p-10 shadow-2xl relative">
+            <button onclick="closeArticle()" aria-label="Close article" class="sticky top-0 float-right ml-4 w-9 h-9 rounded-full bg-[#e6eaff] text-[#1a1590] font-bold flex items-center justify-center hover:bg-[#4a5cff] hover:text-white transition cursor-pointer">
+                &times;
+            </button>
+            <div id="modal-meta" class="flex items-center gap-3 mb-3"></div>
+            <h2 id="modal-title" class="text-2xl md:text-3xl font-extrabold text-[#1a1590] tracking-tight mb-5"></h2>
+            <div id="modal-body" class="article-body"></div>
+        </div>
+    </div>
+
+    <footer class="site-footer text-center py-8 text-sm font-semibold">
+        <p>&copy; 2026 LemonPower21. All rights reserved.</p>
+    </footer>
+
+    <script>
+        /* =====================================================================
+           ARTICLES  —  the ONLY place you need to touch to add a new post.
+
+           To add one: copy the block below, paste it at the TOP of the list
+           (newest first) and fill it in. Don't forget the comma after "}".
+           Cards, search and the reader window are all built from this list.
+
+           {
+               title:    'Your title',
+               date:     'Dec 02, 2026',
+               readTime: 5,                        // minutes (optional)
+               tag:      'Technology',             // small label on the card (optional, any text)
+               summary:  'One or two lines shown on the card.',
+               body: `
+                   <p>First paragraph…</p>
+                   <h4>A subheading</h4>
+                   <p>Another paragraph…</p>
+               `                                   // (don't use backtick characters inside the body)
+           },
+           ===================================================================== */
+
+        // true  = the first (newest) article is shown with a bigger title and a "Featured" label
+        // false = every article uses the same card
+        const FEATURE_FIRST = false;
+const articles = [
+            {
+                title: 'Dumpster Diving & Xiaomi Bloatware',
+                date: 'August 01, 2026',
+                readTime: 4,
+                tag: 'Technology',
+                summary: 'Hi everyone! In this second episode of "Dumpster Diving," I fought against Xiaomi\'s bloatware...',
+                body: `
+                    <p>Hi everyone! In this second episode of &apos;Dumpster Diving,&apos; I fought against Xiaomi&apos;s bloatware...</p>
+                    <p>Today, I&apos;ll explain how I saved my 2022 Redmi Note 10 Pro (my main phone) from the bloatware that was slowing it down significantly.</p>
+                    <p>First, I did a factory reset and enabled USB Debugging on the phone.</p>
+                    <p>Then, using Platform-Tools on my PC, I removed all the useless Xiaomi apps. Afterward, I installed &apos;Fossify Apps,&apos; and now the phone is actually much faster! However, I later realized that although the Fossify Suite is very lightweight, it&apos;s not really my favorite.</p>
+                    <p>So, I installed standard Google apps instead, which are at least ad-free and don&apos;t send annoying push notifications. (By the way, if you actually like Xiaomi&apos;s built-in apps, I suggest using AdGuard DNS, which at least removes invasive ads).</p>
+                    <p>Now, let&apos;s see how many more years my phone can last!</p>
+                `
+            },
+            {
+                title: 'Dumpster Diving & Old Smartphones',
+                date: 'Jul 29, 2026',
+                readTime: 4,
+                tag: 'Technology',
+                summary: 'Today, I was digging through an old closet at home and stumbled upon three of my old smartphones. Honestly, they hit me right in the feelings those little bricks are where my entire tech journey began.',
+                body: `
+                    <p>Today, I was digging through an old closet at home and stumbled upon three of my old smartphones. Honestly, they hit me right in the feelings those little bricks are where my entire tech journey began.</p>
+                    <p>I&apos;ve always loved &ldquo;dumpster diving&rdquo; for gear and bringing old tech back to life. I&apos;m a firm believer in the motto: &ldquo;Hardware doesn&apos;t get old; software does.&rdquo; and my desktop setups are living proof: Windows 11 turned them into absolute sloths, but dropping Linux on them made them fly again.</p>
+                    <p>As for the phones I found:<br>1. Two of them are stuck in an endless bootloop (for now...).<br>2. My very first phone a Samsung Galaxy J5 (2016) still boots up perfectly!</p>
+                    <p>I couldn&apos;t resist. I fired it up, whipped out ADB (platform-tools), and stripped away all the pre-installed bloatware. Then, I installed Termux.</p>
+                    <p>Now, I can literally SSH right into my memories =)</p>
+                    <p>Damn, I miss the days when the absolute peak of my computer skills was spending hours hunting down modded APKs on obscure forums such as AndroidOyunClub...</p>
+                `
+            },
+            {
+                title: 'Building Your Own Family Tree',
+                date: 'Jul 13, 2026',
+                readTime: 5,
+                tag: 'Technology',
+                summary: 'A really interesting project to do in your spare time is to build your own family tree, and today I would like to share with you the software and technologies that helped me to achieve it!',
+                body: `
+                    <p>A really interesting project to do in your spare time is to build your own family tree, and today I would like to share with you the software and technologies that helped me to achieve it!</p>
+                    <p>First of all, you need these 4 things:<br>1. The names of your grandparents or great-grandparents.<br>2. A &ldquo;FamilySearch account&rdquo;, which is a must-have because you can fetch all the data about your ancestors from that website!<br>3. &ldquo;RootsMagic&rdquo;, which will help us to import the family tree branches.<br>4. &ldquo;Gramps&rdquo;, which will be used to edit the family tree in the future.</p>
+                    <p>Once you have your grandparents&apos; or great-grandparents&apos; names, the first thing to do is to go to FamilySearch and search for them. If you see a person with the same name, the same birthplace, and the same birth or death date of the relative you searched for, then it&apos;s very probable that the tree refers to your relative!</p>
+                    <p>Once you have found a relative, go to &ldquo;RootsMagic&rdquo;. You can start to build your tree or import a relative branch directly from FamilySearch using the FamilySearch integration feature. (By the way, another option is to keep your tree online on FamilySearch, but I prefer to have it saved locally! 😉)</p>
+                    <p>When the import is done, export the tree as a GEDCOM file (.ged extension) and you&apos;re good to go!</p>
+                    <p>Now, if you just want to view it, you can use &ldquo;Topola Gedviewer&rdquo;, and if you want to edit something, you can import it into &ldquo;Gramps&rdquo; and work on it there!</p>
+                    <p>My FamilyTree actually has 2450 members and 338 surnames... I hope your will be this big too!</p>
+                `
+            },
+            {
+                title: 'First Year at PoliTo & Summer Plan',
+                date: 'Jul 03, 2026',
+                readTime: 4,
+                tag: 'Personal',
+                summary: 'Today I was thinking about how fast time flies! It seems like only yesterday when I started my journey as a Computer Engineering student at #PoliTo, and now I am glad to say that I have successfully passed my first year!',
+                body: `
+                    <p>Today I was thinking about how fast time flies! It seems like only yesterday when I started my journey as a Computer Engineering student at #PoliTo, and now I am glad to say that I have successfully passed my first year! To celebrate this achievement, I have decided to go on a bike trip for at least a week with some of my friends from back home.</p>
+                    <p>I have a great plan for this summer:</p>
+                    <p>1. First of all, I want to enjoy my time off.<br>2. My second goal is to publish content on the &apos;Big 3&apos; (YouTube, Instagram, and TikTok) to grow as much as possible as a &apos;tech influencer.&apos;<br>3. I also want to write posts on LinkedIn and Substack to improve my English (My motto is: &apos;If you don&apos;t use it, you lose it!&apos;).<br>4. I want to solve some LeetCode problems to be ready for the &apos;Algorithms and Data Structures&apos; exam.</p>
+                    <p>Let&apos;s see how fast this summer passes by! =)</p>
+                `
+            },
+            {
+                title: 'GPSAwakeSystem',
+                date: 'Apr 04, 2026',
+                readTime: 5,
+                tag: 'Technology',
+                summary: 'Ever missed your train stop because you fell asleep? I created "GPSAwakeSystem" to fix this. It\'s a location-based alarm system designed for maximum efficiency and peace of mind.',
+                body: `
+                    <p>Ever missed your train stop because you fell asleep?<br>We&apos;ve all been there: you set an alarm for the scheduled arrival time, but the train gets delayed. You end up being woken up 20 minutes early in the middle of nowhere, or worse, the alarm doesn&apos;t account for a change in pace and you wake up two stations too late.</p>
+                    <p>I created &ldquo;GPSAwakeSystem&rdquo; to fix this. It&apos;s a location-based alarm system designed for maximum efficiency and peace of mind.</p>
+                    <p>Why is it a game-changer?<br>Unlike traditional alarms, GPSAwakeSystem is based on space, not time. If your train is delayed, you actually get to rest more. The alarm is tied to your physical proximity to the destination, ensuring you wake up exactly when it matter regardless of what the timetable says.</p>
+                    <p>How it works (The KISS Method)<br>The app follows a strict Keep It Simple, Stupid (KISS) philosophy. No bloat, just utility:<br>1) Search for your destination station.<br>2) Set your preferred alarm radius (e.g., wake me up 2 miles away).<br>3) Wait for the app to do its job while you relax.</p>
+                    <p>Why you won&apos;t find this on F-Droid<br>While I appreciate the open-source community, I&apos;ve decided not to host the app on F-Droid for three specific reasons:<br>A) Monetization: I intend to support the project&apos;s growth through AdSense. F-Droid&apos;s strict anti-feature policies regarding advertisements make it an incompatible platform for this business model.<br>B) Platform Stability: With Google&apos;s upcoming &ldquo;Developer Verification&rdquo; requirements, the future of alternative stores like F-Droid is currently facing significant legal and technical hurdles. I prefer to focus on distribution channels with a more predictable roadmap.<br>C) Development Velocity: I attempted to submit the app via F-Droid&apos;s Merge Request process, but the overhead and technical friction were excessive. Spending days on repository bureaucracy contradicts my philosophy of moving fast and keeping things simple.</p>
+                    <p>Final Thought<br>GPSAwakeSystem is about giving you back your commute. Whether it&apos;s a 15-minute nap or a 3-hour journey, you can sleep soundly knowing your location not a clock is watching over you.</p>
+                    <p>Where I can download the app?<br>GitHub Releases: <a href="https://lnkd.in/dmd2s-6Z" target="_blank" rel="noopener">https://lnkd.in/dmd2s-6Z</a><br>GitLab Releases: <a href="https://lnkd.in/duhyukUz" target="_blank" rel="noopener">https://lnkd.in/duhyukUz</a></p>
+                `
+            },
+            {
+                title: 'Windows XP & Nostalgia',
+                date: 'Mar 03, 2026',
+                readTime: 3,
+                tag: 'Personal',
+                summary: 'Just today, I visited my uncle and tried to bring an old PC back to life. Seeing Windows XP boot up honestly it wakes up so many memories.',
+                body: `
+                    <p>Just today, I visited my uncle and tried to bring an old PC back to life. Seeing Windows XP boot up honestly it wakes up so many memories. Between that iconic startup sound and the simplicity of the OS, I felt a deep wave of emotion. It reminded me of how beautiful life felt before the era of &ldquo;brainrot&rdquo; and endless AI-generated content. Don&apos;t get me wrong I&apos;m not saying technological progress is a bad thing; in fact, I&apos;m the first person to embrace it. But there&apos;s just something magical and nostalgic about seeing the vintage computers I grew up with. It takes me back to a time when the digital world felt a little more human.</p>
+                `
+            },
+            {
+                title: 'First Google Developer Group (GDG) Event',
+                date: 'Oct 23, 2025',
+                readTime: 2,
+                tag: 'Personal',
+                summary: 'What a great experience at my first ever Google Developer Group (GDG) event today (October 23, 2025)!',
+                body: `
+                    <p>What a great experience at my first ever Google Developer Group (GDG) event today (October 23, 2025)! I found the session very engaging and had the chance to connect with some genuinely talented individuals in tech such as Chiara Corrado which presentation was particularly interesting as I recognized part of my own past in her story.<br>Huge thanks to the organizers, Giovanni Forlastro and Elia Bellussi, MBA, for putting together such a wonderful networking opportunity!</p>
+                `
+            },
+            {
+                title: 'Jailbreaking ChatGPT & LLMs in 2025',
+                date: 'Oct 06, 2025',
+                readTime: 4,
+                tag: 'Technology',
+                summary: 'Is there a way to jailbreak ChatGPT or other LLMs in 2025? The answer is absolutely yes!',
+                body: `
+                    <p>Is there a way to jailbreak ChatGPT or other LLMs in 2025?</p>
+                    <p>The answer is absolutely yes!<br>Until a few months ago it was possible to jailbreak LLMs with simple prompts like &ldquo;DAN will do ...&rdquo; or &ldquo;Grandma once told me ...&rdquo;. However, following security updates, these types of scripts are automatically detected by ChatGPT.</p>
+                    <p>However, I found a &ldquo;sideways&rdquo; way to jailbreaking and the procedure is this:</p>
+                    <p>1. Use Ollama to run llama2-uncensored and ask for things like &ldquo;Create me a keylogger in Python&rdquo;<br>2. Take that program and ask ChatGPT to fix it.</p>
+                    <p>At this point two options present themselves.</p>
+                    <p>1. ChatGPT has been jailbroken and from there you can ask to &ldquo;Improve your script perhaps with a log.txt file or make it invisible and run in the background&rdquo;.<br>2. ChatGPT creates an equivalent program that fetches and records not the keyboard but other data such as the variation of the window size due to the movement of the mouse on that window.</p>
+                    <p>Today I demonstrated to all of you that it is still possible to Jailbreak AI and that cybersecurity will play a very important role in the development of LLMs.<br>In summary I used a 7B parameter AI-Uncensored to hack one with several billion parameters and it worked! The letters &ldquo;Hi Camilla&rdquo; I typed on Firefox were recorded!</p>
+                `
+            },
+            {
+                title: 'Retail Trading vs. Long-Term Investing & FIRE',
+                date: 'Oct 01, 2025',
+                readTime: 6,
+                tag: 'Finance',
+                summary: 'For the past year, I\'ve immersed myself in the world of finance, specifically trading and I understood that for a retail user, trading today is extremely difficult and, frankly, often not worth it.',
+                body: `
+                    <p>For the past year, I&apos;ve immersed myself in the world of finance, specifically trading and I understood that for a retail user, trading today is extremely difficult and, frankly, often not worth it. I realized the competition is completely unbalanced. High-Frequency Traders (HFTs), with their cutting-edge technological infrastructure, can detect and exploit market inefficiencies at speeds that my trading bot-or any other retail trader&apos;s-could never match. It&apos;s a race against time that, for us, is lost from the start. On top of that, operational costs can eat away at any potential gains. I&apos;m talking about broker commissions, bid-ask spreads, and especially slippage. While HFTs minimize these costs due to their speed and volume, for us, they represent a significant barrier to profitability. Furthermore, many people get into trading without a solid financial plan, an error that can lead to impulsive decisions. You risk losing out on dividends, and even if an operation succeeds, high capital gains taxes can drastically reduce your net profit. Finally, one fact that struck me is how even professional investment funds, with rare exceptions, struggle to consistently beat their benchmark. If it&apos;s this difficult for the experts, for us retail users, it&apos;s almost an illusion. For all these reasons, my belief is that for most of us, the wisest and ultimately most profitable path is to save and invest with a long-term horizon, rather than trying our luck with speculative trading.</p>
+                    <p>For anyone who wants to learn more and take a more conscious financial path, I found some excellent resources that shaped my thinking. I relied heavily on the teachings of Paolo Coletti in &ldquo;Educati e Finanziati&rdquo;, (Link here: <a href="https://lnkd.in/eJsn-Je4" target="_blank" rel="noopener">https://lnkd.in/eJsn-Je4</a> ) a true pillar for building a solid foundation. And for those who aren&apos;t familiar with practical tools, &ldquo;Educati Incasellati&rdquo; (Link here: <a href="https://lnkd.in/ezuMXkr2" target="_blank" rel="noopener">https://lnkd.in/ezuMXkr2</a> ) was fundamental for learning how to use Excel effectively for financial management.</p>
+                    <p>In the realm of personal finance, I was fascinated by the topics proposed by Mr. RIP or Giorgio Ugazio, particularly the concept of FIRE (Financial Independence, Retire Early) (Link here: <a href="https://lnkd.in/ekAuma59" target="_blank" rel="noopener">https://lnkd.in/ekAuma59</a> ) . I know thinking about &ldquo;early retirement&rdquo; might seem strange at my age, but the idea of achieving financial independence is incredibly motivating. Last but not least, I appreciated Chiara Anzuino&apos;s perspectives on entrepreneurship and university choices (Link here: <a href="https://lnkd.in/efNZK8bi" target="_blank" rel="noopener">https://lnkd.in/efNZK8bi</a> ), which offer a broader view on how to build one&apos;s future. Finally, I leave an empty copy of my excel sheet for anyone who wants to start on the path to financial freedom (it&apos;s quite simple and contains several pivot tables for a better view of the data) (Link here: <a href="https://lnkd.in/eJD8nEkN" target="_blank" rel="noopener">https://lnkd.in/eJD8nEkN</a>)</p>
+                `
+            },
+            {
+                title: 'My Aspiration to Work at Google & Contributing to Google Maps',
+                date: 'Jul 07, 2025',
+                readTime: 4,
+                tag: 'Technology',
+                summary: 'As my GitHub profile indicates, my aspiration to work at Google dates back to when I was around 15 years old.',
+                body: `
+                    <p>As my GitHub profile indicates, my aspiration to work at Google dates back to when I was around 15 years old. For me, working for a company extends beyond simply completing one&apos;s shift; it means genuinely believing in both the company&apos;s &ldquo;vision&rdquo; and, more importantly, its &ldquo;mission&rdquo;.</p>
+                    <p>My desire to work at Google, or to contribute to its projects, stems from two primary motivations. Firstly, I&apos;m a regular user of Google&apos;s services and find them exceptionally valuable. I genuinely hope to contribute to their improvement should I ever have the opportunity to work at the company. Secondly, discovering Ludovico Bessi LinkedIn has been a significant influence. Through his insightful posts, he has provided a deeper understanding of the immense work involved in every single product. His explanations of how complex systems such as LLMs function in relation to search engines (I leave the link of the post here: <a href="https://lnkd.in/eaG33BDi" target="_blank" rel="noopener">https://lnkd.in/eaG33BDi</a> ), leveraging web information, were particularly compelling.</p>
+                    <p>Currently, as a regular user, I&apos;ve already taken steps to enhance the &ldquo;Google Maps&rdquo; experience by adding a local forest (Link: <a href="https://lnkd.in/eYB-PjKh" target="_blank" rel="noopener">https://lnkd.in/eYB-PjKh</a> )in my municipality that wasn&apos;t yet registered. I also hope to contribute photos to &ldquo;Google Street View Studio&rdquo; as soon as possible, ensuring adherence to its 360-degree photo requirements.</p>
+                `
+            },
+            {
+                title: 'Contributing to Fontanelle.org on a Countryside Walk',
+                date: 'Jun 12, 2025',
+                readTime: 2,
+                tag: 'Nature',
+                summary: 'Although I love IT and I like finance, in my free time I prefer walking in the countryside or going to the gym.',
+                body: `
+                    <p>Although I love IT and I like finance, in my free time I prefer walking in the countryside or going to the gym. Today I realized that two small fountains that I found along my walk had not been reported on the Fontanelle.org website. All this to tell you that I contributed to the development of fontanelle.org and made the life of some &ldquo;hikers&rdquo; or &ldquo;walkers&rdquo; easier!</p>
+                `
+            },
+            {
+                title: 'Politecnico di Torino Entrance Test, Final Exams & YouTube',
+                date: 'Apr 09, 2025',
+                readTime: 3,
+                tag: 'Personal',
+                summary: 'I haven\'t written on LinkedIn for a long time but these months have been quite tough for me as there have been several changes...',
+                body: `
+                    <p>I haven&apos;t written on LinkedIn for a long time but these months have been quite tough for me as there have been several changes:<br>1. I passed the entrance test for the Polytechnic from Turin and I am currently looking for a house there<br>2. It was a tough period at school as it was full of tests and oral questions and now I am preparing for the state exams and especially for the mathematics test<br>3. I created a YouTube channel and a blog where I occasionally publish videos and shorts on reviews of some applications, codes I write and similar stuff. The channel has nothing formal from a linguistic point of view, in fact my goal is simply to have useful tutorials for myself in case of need. I hope to write more code as soon as possible but I know it will only be possible after the exams when I will have a &ldquo;breath moment&rdquo; before going to study in Turin</p>
+                `
+            },
+            {
+                title: 'Exposed .env Files & Google Hacking Database',
+                date: 'Feb 12, 2025',
+                readTime: 3,
+                tag: 'Technology',
+                summary: 'A few months ago, I was exploring ways to enhance Petroleum security in terms of credential management. During my research, I came across .env files, which are commonly used to store sensitive credentials.',
+                body: `
+                    <p>A few months ago, I was exploring ways to enhance Petroleum security in terms of credential management. During my research, I came across .env files, which are commonly used to store sensitive credentials. This led me to wonder: What would happen if these files were publicly accessible on HTTP/FTP servers and not properly secured or obscured?<br>To investigate, I ran a series of Google Hacking Database (GHDB) scripts to analyze 10 different HTTP servers. I specifically looked for instances where the directory structure was publicly indexed, making it easy to access .env files. Shockingly, 7 out of the 10 servers I examined had not properly secured their .env files, allowing me to view sensitive information with ease. (For privacy reasons, I have censored the credentials in the screenshots, and I urge you not to access the servers listed, as using these credentials for unauthorized purposes would be illegal.)<br>It&apos;s astounding that only 3 out of the 10 servers had properly secured their .env files, protecting them from external access.</p>
+                `
+            },
+            {
+                title: 'Writing Partisan, a Python Network Scanner',
+                date: 'Feb 01, 2025',
+                readTime: 3,
+                tag: 'Technology',
+                summary: 'Recently at school I studied networks and the functioning of IP and TCP protocols and their respective headers on a theoretical level.',
+                body: `
+                    <p>Recently at school I studied networks and the functioning of IP and TCP protocols and their respective headers on a theoretical level. About three years ago I was messing around with Wireshark on Kali Linux without a deep-understanding of the concepts and so I decided to write an oversimplified version of a network scanner myself using Python in order to improve both in Python and keep in mind the concepts for the test at school. I called it Partisan because It was the first name that comes into my mind.</p>
+                    <p>The code available here: <a href="https://lnkd.in/eg2ud8B2" target="_blank" rel="noopener">https://lnkd.in/eg2ud8B2</a></p>
+                `
+            },
+            {
+                title: 'Updating the "Petrolium" Bot',
+                date: 'Jan 14, 2025',
+                readTime: 4,
+                tag: 'Finance',
+                summary: 'I just updated the "Petrolium" trading bot and introduced these new features...',
+                body: `
+                    <p>I just updated the &ldquo;Petrolium&rdquo; trading bot and introduced these new features:</p>
+                    <p>1. Better network error handling<br>2. Possibility of tracking multiple financial securities simultaneously on the same terminal<br>3. I added an alert system based on technical data.<br>4. I added functions for calculating profit, percentage profit, currency exchange and elapsed time</p>
+                    <p>What have I changed? Well the bot is not focused on trading cryptocurrencies but other financial assets.</p>
+                    <p>WARNING: The bot does not operate directly on the stock exchange and is not designed for CFDs with TP or SL, but simply tries to predict prices based on the data and the given strategy!</p>
+                    <p>Visit the code here: <a href="https://lnkd.in/efUqY-tr" target="_blank" rel="noopener">https://lnkd.in/efUqY-tr</a></p>
+                `
+            },
+            {
+                title: 'Releasing a Custom Python Finance Library',
+                date: 'Jan 06, 2025',
+                readTime: 3,
+                tag: 'Finance',
+                summary: 'I have recently released my own finance library in Python! I\'m actually updating my "Petrolium Bot" and I\'ve realized that I needed a finance library that also takes into account any errors related to the network.',
+                body: `
+                    <p>I&apos;ve recently released my own finance library in Python! I&apos;m actually updating my &ldquo;Petrolium Bot&rdquo; and I&apos;ve realized that I needed a finance library that also takes into account any errors related to the network. I therefore decided to program my finance library as it is necessary for the trading bot to continue working even when the network goes down. I am satisfied with my library and I hope you can use it too. Since it is a newly programmed library, please contact me if there are any errors or problems...</p>
+                    <p>Link: <a href="https://lnkd.in/eRD-vA5Q" target="_blank" rel="noopener">https://lnkd.in/eRD-vA5Q</a><br>Code: <a href="https://lnkd.in/eEgvVNhj" target="_blank" rel="noopener">https://lnkd.in/eEgvVNhj</a></p>
+                `
+            },  
+            {
+                title: 'Google Dorks, OSINT & Web Exposure',
+                date: 'Dec 23, 2024',
+                readTime: 3,
+                tag: 'Technology',
+                summary: 'This is the real power of Google Dork and OSINT. You can access information that are really hard to find.',
+                body: `
+                    <p>This is the real power of Google Dork and OSINT. You can access information that are really hard to find. For istance there is a list of credit card below and some screenshot I took from different webcam all over the web (I don&apos;t bruteforced the password, don&apos;t worry =)). If an hacker, thanks to GHDB or Shodan.io or some other kind of search engine can access to a login page which is vulnerable by SQL-Injection It will be attacked with tools like SQLMap and in addiction if the login page doesn&apos;t have any kind of protection of Bruteforce attack It can be easily bruteforced (if the credentials are easy to find) with Burpsuite (which analize if the form of login page is GET o POST and it give some other additional data) and Hydra (which is the tool used to bruteforce the login page itself).</p>
+                `
+            },
+            {
+                title: 'Releasing "Petrolium", an Open-Source Market Alarm System',
+                date: 'Aug 20, 2024',
+                readTime: 2,
+                tag: 'Finance',
+                summary: 'I\'m glad to announce that, after two months of work, I\'ve finished my own project called "Petrolium", which is an alarm system based on stock and crypto real-time market information.',
+                body: `
+                    <p>I&apos;m glad to announce that, after two months of work, I&apos;ve finished my own project called &ldquo;Petrolium&rdquo;, which is an alarm system based on stock and crypto real-time market information, that unlikely TradingView It is free and open-source. Below there are some picture of program.</p>
+                    <p>More info here: <a href="https://lnkd.in/eAi5G9yD" target="_blank" rel="noopener">https://lnkd.in/eAi5G9yD</a></p>
+                `
+            }
+        ];
+
+        /* ===================== Everything below is the engine ===================== */
+
+        // Mobile Menu
+        const btn = document.getElementById('hamburger');
+        const menu = document.getElementById('nav-links');
+        btn.addEventListener('click', () => {
+            const open = menu.classList.toggle('hidden') === false;
+            menu.classList.toggle('flex', open);
+            btn.setAttribute('aria-expanded', open);
+        });
+
+        // Reveal Animation
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+            });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+        // Helpers
+        const esc = (s = '') => String(s).replace(/[&<>"']/g, c =>
+            ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+        const metaText = (a) => [a.date, a.readTime ? a.readTime + ' min read' : ''].filter(Boolean).join(' • ');
+
+        // Lowercase text used by the search box (title, summary, tag, date and the full article text)
+        articles.forEach(a => {
+            a._search = [a.title, a.summary, a.tag, a.date, String(a.body || '').replace(/<[^>]*>/g, ' ')]
+                .join(' ').toLowerCase();
+        });
+
+        /* ---------- Cards ---------- */
+        const featuredSlot = document.getElementById('featured-slot');
+        const postsGrid = document.getElementById('posts-grid');
+        const arrowIcon = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>';
+
+        function cardHTML(art, i, featured) {
+            const meta = `<span class="text-xs font-medium text-[#5b5f86]">${esc(metaText(art))}</span>`;
+            const tagLabel = featured ? ['Featured', art.tag].filter(Boolean).join(' • ') : art.tag;
+            const tag = tagLabel ? `<span class="tag">${esc(tagLabel)}</span>` : '';
+
+            if (featured) {
+                return `
+                <article class="blog-card featured-card reveal mb-10 post-item" data-post-id="${i}">
+                    <div class="p-7 md:p-10">
+                        <div class="flex items-center gap-3 mb-3">${tag}${meta}</div>
+                        <h2 class="text-2xl md:text-3xl font-extrabold text-[#1a1590] tracking-tight mb-3">${esc(art.title)}</h2>
+                        <p class="text-[#5b5f86] leading-relaxed mb-6">${esc(art.summary)}</p>
+                        <button type="button" onclick="openArticle(${i})" class="read-more">Read article ${arrowIcon}</button>
+                    </div>
+                </article>`;
+            }
+            return `
+                <article class="blog-card reveal post-item" data-post-id="${i}">
+                    <div class="p-7">
+                        <div class="flex items-center gap-3 mb-3">${tag}${meta}</div>
+                        <h3 class="text-xl font-extrabold text-[#1a1590] mb-2">${esc(art.title)}</h3>
+                        <p class="text-[#5b5f86] text-sm leading-relaxed mb-5">${esc(art.summary)}</p>
+                        <button type="button" onclick="openArticle(${i})" class="read-more">Read article ${arrowIcon}</button>
+                    </div>
+                </article>`;
+        }
+
+        function renderArticles() {
+            const list = articles.map((art, i) => ({ art, i }));
+            const featured = FEATURE_FIRST ? list.shift() : null;
+            featuredSlot.innerHTML = featured ? cardHTML(featured.art, featured.i, true) : '';
+            postsGrid.innerHTML = list.map(({ art, i }) => cardHTML(art, i, false)).join('');
+            document.querySelectorAll('.post-item').forEach(card => io.observe(card));
+        }
+
+        /* ---------- Search ---------- */
+        const searchInput = document.getElementById('search-input');
+        const emptyState = document.getElementById('empty-state');
+
+        function filterPosts() {
+            const query = searchInput.value.toLowerCase().trim();
+            let visibleCount = 0;
+            document.querySelectorAll('.post-item').forEach(post => {
+                const art = articles[Number(post.dataset.postId)];
+                const match = art._search.includes(query);
+                post.classList.toggle('hidden', !match);
+                if (match) visibleCount++;
+            });
+            emptyState.classList.toggle('hidden', visibleCount > 0);
+        }
+        searchInput.addEventListener('input', filterPosts);
+
+        /* ---------- Reader modal ---------- */
+        const modal = document.getElementById('article-modal');
+        function openArticle(index) {
+            const art = articles[index];
+            document.getElementById('modal-meta').innerHTML =
+                (art.tag ? `<span class="tag">${esc(art.tag)}</span>` : '') +
+                `<span class="text-xs font-medium text-[#5b5f86]">${esc(metaText(art))}</span>`;
+            document.getElementById('modal-title').textContent = art.title;
+            document.getElementById('modal-body').innerHTML = art.body;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeArticle() {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = '';
+        }
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeArticle();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeArticle();
+        });
+
+        /* ---------- Go ---------- */
+        renderArticles();
+        filterPosts();
+    </script>
+</body>
+</html>
